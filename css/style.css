@@ -1,0 +1,30 @@
+body {
+	background-color: #ADFF2F;
+}
+
+nav {
+  padding: 10px 20px;
+}
+
+.logo{
+	width:450px;	
+}
+
+h1 {
+	color: white;
+	text-align: center;
+}
+
+input {
+	margin: 15px 0;
+}
+
+button {
+	margin: 25px 0;
+}
+
+main {
+	margin: 50px auto;
+	max-width: 600px;
+	padding: 100px;
+}
