@@ -10,7 +10,7 @@
 <body>
   <header>
     <nav class="navbar fixed-top navbar-light bg-light" style ="background-color:#F8F8FF;">
-        <a class="navbar-brand" href="#"><img src="../imagens/Logo_Escola_Caes_Guias_Keller.png" class ="logo"> </a>
+        <a class="navbar-brand" href="index.php"><img src="../imagens/Logo_Escola_Caes_Guias_Keller.png" class ="logo"> </a>
     </nav>
   </header>
   
