@@ -22,7 +22,7 @@ include 'esqueleto.php';
 			<input type="text" name="usuario" class="form-control" value="" placeholder="Login">
 			<label for="senha" class="sr-only">Senha</label>
 			<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
-			<a href="menu.php?page=EsqueciSenha">Esqueci minha senha</a>
+			<a href="EsqueciSenha.php">Esqueci minha senha</a>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 			<?php session_start(); ?>
 			<?php if (isset($_SESSION["MensagemErroLogin"])) { ?>

@@ -19,7 +19,7 @@
 
       <nav>
         <ul class="menu">
-          <li><a href=index.php class="active">Home</a></li>
+          <li><a href=index.php>Home</a></li>
           <li><a href=login.php>Login</a></li>
           <li><a href=eventos.php>Eventos</a></li>
 
@@ -27,11 +27,11 @@
             <a href="#" class="dropdown-btn">Cadastros</a>
             <!-- Cria o conteúdo do dropdown -->
             <div class="dropdown-content">
-              <a href=menu.php?page=Tutores>Tutores</a>
-              <a href=menu.php?page=Caes>Cães</a>
-              <a href=menu.php?page=Usuarios>Usuários</a>
-              <a href=menu.php?page=Terceiros>Terceiros</a>
-              <a href=menu.php?page=GrupoUsuarios>Grupo de usuários</a>
+              <a href=menu.php>Tutores</a>
+              <a href=menu.php>Cães</a>
+              <a href=menu.php>Usuários</a>
+              <a href=menu.php>Terceiros</a>
+              <a href=menu.php>Grupo de usuários</a>
             </div>
           </li>
       </ul>
