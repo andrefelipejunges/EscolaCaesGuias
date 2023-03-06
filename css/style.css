@@ -25,13 +25,13 @@ button {
 }
 
 main {
-	margin: 200px auto;
+	margin: 150px auto;
 	max-width: 500px;
 	padding: 100px;
 }
 
 .container-login {
-	margin: 170px auto;
+	margin: 150px auto;
 	max-width: 400px;
 	padding: 60px;
 	border: 1px solid #ccc;
