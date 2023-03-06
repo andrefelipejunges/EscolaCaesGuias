@@ -9,41 +9,19 @@
 
 <body>
   <header>
-
-    <script>
-        // Selecione todos os elementos <a> dentro de um <li> em nav
-        var navLinks = document.querySelectorAll("nav ul li a");
-
-        // Loop através dos elementos e adicione um ouvinte de evento click
-        for (var i = 0; i < navLinks.length; i++) {
-          navLinks[i].addEventListener("click", function() {
-            // Remova a classe "selected" de todos os elementos <a> em nav
-            for (var j = 0; j < navLinks.length; j++) {
-              navLinks[j].classList.remove("active");
-            }
-            // Adicione a classe "selected" ao elemento <a> clicado
-            this.classList.add("active");
-          });
-        }
-
-</script>
-
-
-
-
     <nav class="navbar fixed-top navbar-light bg-light" style ="background-color:#F8F8FF;">
         <a class="navbar-brand" href="#"><img src="../imagens/Logo_Escola_Caes_Guias_Keller.png" class ="logo"> </a>
     </nav>
   </header>
   
-    <form method="post" action="Menu.php">
+    <form method="post" action="index.php">
       <div class="Container-Menu-principal">
 
       <nav>
         <ul class="menu">
-          <li><a href=menu.php?page=Home class="active">Home</a></li>
-          <li><a href=menu.php?page=Login>Login</a></li>
-          <li><a href=menu.php?page=Eventos>Eventos</a></li>
+          <li><a href=index.php class="active">Home</a></li>
+          <li><a href=login.php>Login</a></li>
+          <li><a href=eventos.php>Eventos</a></li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-btn">Cadastros</a>

@@ -3,7 +3,7 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_NAME', 'escolaCaesGuias');
+define('DB_NAME', 'caes');
 
 try
 {
