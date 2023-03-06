@@ -14,7 +14,7 @@
     </nav>
   </header>
   
-    <form method="post" action="index.php">
+    <form method="post">
       <div class="Container-Menu-principal">
 
       <nav>
@@ -27,11 +27,11 @@
             <a href="#" class="dropdown-btn">Cadastros</a>
             <!-- Cria o conteúdo do dropdown -->
             <div class="dropdown-content">
-              <a href=menu.php>Tutores</a>
-              <a href=menu.php>Cães</a>
-              <a href=menu.php>Usuários</a>
-              <a href=menu.php>Terceiros</a>
-              <a href=menu.php>Grupo de usuários</a>
+              <a href=tutores.php>Tutores</a>
+              <a href=caes.php>Cães</a>
+              <a href=usuarios.php>Usuários</a>
+              <a href=terceiros.php>Terceiros</a>
+              <a href=grupoUsuarios.php>Grupo de usuários</a>
             </div>
           </li>
       </ul>
