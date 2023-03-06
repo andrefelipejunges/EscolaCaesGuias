@@ -1,3 +1,9 @@
+<?php
+
+include 'esqueleto.php';
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,30 +14,23 @@
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 
-<body>
-	<header>
-		<nav class="navbar fixed-top navbar-light bg-light" style ="background-color:#F8F8FF;">
-	    	<a class="navbar-brand" href="#"><img src="../imagens/Logo_Escola_Caes_Guias_Keller.png" class ="logo"> </a>
-		</nav>
-	</header>
-	
-	<main> 
-		<form method="post" action="logar.php">
-			<div class="container"> 
-				<h1 class="h3 mb-3 font-weight-normal"><b>Login</b></h1>
-				<label for="usuario" class="sr-only"></label>
-				<input type="text" name="usuario" class="form-control" value="" placeholder="Login">
-				<label for="senha" class="sr-only">Senha</label>
-				<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
-				<a href="esqueci_senha.php">Esqueci minha senha</a>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-				<?php session_start(); ?>
-				<?php if (isset($_SESSION["MensagemErroLogin"])) { ?>
-				<div class="alert alert-danger" role="alert"><?php echo $_SESSION["MensagemErroLogin"]; ?></div>
-				<?php } ?>
-				<?php session_destroy(); ?>
-			</div>
-		</form>
-	</main>
+<body>	
+	<form method="post" action="logar.php">
+		<div class="container-login"> 
+			<h1 class="h3 mb-3 font-weight-normal"><b>Login</b></h1>
+			<label for="usuario" class="sr-only"></label>
+			<input type="text" name="usuario" class="form-control" value="" placeholder="Login">
+			<label for="senha" class="sr-only">Senha</label>
+			<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+			<a href="menu.php?page=EsqueciSenha">Esqueci minha senha</a>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+			<?php session_start(); ?>
+			<?php if (isset($_SESSION["MensagemErroLogin"])) { ?>
+			<div class="alert alert-danger" role="alert"><?php echo $_SESSION["MensagemErroLogin"]; ?></div>
+			<?php } ?>
+			<?php session_destroy(); ?>
+		</div>
+	</form>
+
 </body>
 </html>
