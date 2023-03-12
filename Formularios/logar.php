@@ -9,7 +9,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
 	$login = $_POST['usuario'];
     $senha = $_POST['senha'];
 
-    $stmt = $conn->prepare("SELECT * FROM usuarios where login=:login and senha=:senha");
+    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE login=:login AND senha=:senha");
     $stmt->bindParam(':login', $login);
     $stmt->bindParam(':senha', $senha);
     $stmt->execute();

@@ -21,8 +21,7 @@
         <ul class="menu">
           <li><a href=index.php>Home</a></li>
           <li><a href=login.php>Login</a></li>
-          <li><a href=eventos.php>Eventos</a></li>
-
+        
           <li class="dropdown">
             <a href="#" class="dropdown-btn">Cadastros</a>
             <!-- Cria o conteúdo do dropdown -->
@@ -32,6 +31,18 @@
               <a href=usuarios.php>Usuários</a>
               <a href=terceiros.php>Terceiros</a>
               <a href=grupoUsuarios.php>Grupo de usuários</a>
+            </div>
+          </li>
+
+          <li><a href=eventos.php>Eventos</a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-btn">Consulta</a>
+            <!-- Cria o conteúdo do dropdown -->
+            <div class="dropdown-content">
+              <a href=tutores.php>Tutores</a>
+              <a href=caes.php>Cães</a>
+              <a href=usuarios.php>Usuários</a>
             </div>
           </li>
       </ul>
