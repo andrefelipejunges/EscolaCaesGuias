@@ -1,28 +1,30 @@
 <?php
 
+require_once DIR_PATH.'/core/conexao.php';
+
 class Usuario {
-    private $usuario;
+    private $login;
     private $senha;
 
-    public function __construct($usuario, $senha) {
-        $this->usuario = $usuario;
-        $this->password = $password;
+    public function __construct($login, $senha) {
+        $this->login = $login;
+        $this->senha = $senha;
     }
 
     public function autenticar() {
-        $login = $_POST['usuario'];
-        $senha = $_POST['senha'];
 
-        $stmt = $conn->prepare("SELECT 1 FROM usuarios WHERE login=:login AND senha=:senha");
-        $stmt->bindParam(':login', $login);
-        $stmt->bindParam(':senha', $senha);
-        $stmt->execute();
+        $conn = new Conexao(); // adicione esta linha para inicializar a variável $conn
+        $conn = $conn->conectar();
 
-         if($stmt->rowCount() == 1)
+        $stmt = $conn->prepare("SELECT 1 FROM usuarios WHERE login=? AND senha=?");
+        $stmt->execute([$this->login, $this->senha]);
+
+         if($stmt->rowCount() == 1){
             return true;
         } else {
             return false;
         }
     }
+}
 
 ?>

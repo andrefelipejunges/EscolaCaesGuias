@@ -1,54 +1,73 @@
 <?php
 
-require_once "../banco/conexao.php";
+require_once DIR_PATH.'/app/models/EsqueciSenha/EsqueciSenhaModel.php';
 
-session_start();
+class EsqueciSenhaController {
 
-// Verifica se o formulário foi submetido
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  // Verifica se o endereço de e-mail foi enviado
-  if (!empty($_POST['email'])) {
-    // Valida o endereço de e-mail
-    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    echo $email;
-    if ($email) {
-       //Verifica se o endereço de e-mail existe no banco de dados
-     //$stmt = $conn->prepare('SELECT * FROM usuarios WHERE email = :email');
-     // $stmt->bindParam(':email', $email);
-     // $stmt->execute();
-     // $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-     // if ($resultado) {
-        // Gera um código de verificação único
-       // $codigo_verificacao = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
-       // echo $codigo_verificacao;
-        
-        // Insere o código de verificação no banco de dados
-       // $stmt = $conn>prepare('UPDATE usuarios SET codigo_verificacao = :codigo_verificacao WHERE email = :email');
-       // $stmt->bindParam(':codigo_verificacao', $codigo_verificacao);
-       // $stmt->bindParam(':email', $email);
-       // $stmt->execute();
-        
-        // Envia um e-mail com o link de redefinição de senha
-        $assunto = 'Redefinição de senha';
-        $mensagem = 'Olá, <br><br>';
-        $mensagem .= 'Para redefinir sua senha, clique no link abaixo: <br><br>';
-        //$mensagem .= '<a href="http://www.seusite.com/redefinirsenha.php?email=' . $email . '&codigo=' . $codigo_verificacao . '">Redefinir senha</a> <br><br>';
-        $mensagem .= 'Se você não solicitou a redefinição de senha, ignore este e-mail. <br><br>';
-        $mensagem .= 'Atenciosamente, <br>';
-        $mensagem .= 'Equipe de suporte';
-        
-        $cabecalho = 'MIME-Version: 1.0' . "\r\n";
-        $cabecalho .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-        $cabecalho .= 'From: Seu Nome <feted68742@youke1.com>' . "\r\n";
-        
-        mail($email, $assunto, $mensagem, $cabecalho);
+    public function enviarEmail() {
+        // Recupera o login informado pelo usuário
+        session_start();
+        $login = $_POST['login'];
 
-        $_SESSION["MensagemSucessoEmail"] = "OK";
-	    header("Location: EsqueciSenha.php");
-     // }   
+        // Cria uma instância do modelo de usuário
+        $usuarioModel = new EsqueciSenhaModel();
+
+        // Verifica se o usuário com o login informado existe
+        if ($usuarioModel->existeUsuarioPorLogin($login)) {
+            // Gera uma nova senha aleatória
+            $novaSenha = $this->gerarNovaSenhaAleatoria();
+
+            // Atualiza a senha do usuário no banco de dados
+            $usuarioModel->atualizarSenhaPorLogin($login, $novaSenha);
+
+            // Envia um email com a nova senha para o usuário
+            $this->enviarEmailComNovaSenha($login, $novaSenha);
+            // Exibe uma mensagem informando que a nova senha foi enviada por email
+            $_SESSION["MensagemSucessoEmail"] = "OK";
+        } else {
+            // Exibe uma mensagem de erro informando que o login informado não existe
+            $_SESSION["MensagemErroEmail"] = "OK";
+        }
+
+         header('Location:'.URL_BASE.'app/views/EsqueciSenha/EsqueciSenhaView.php');
     }
-  }
- }
+
+// Gera uma nova senha aleatória com 8 caracteres
+function gerarNovaSenhaAleatoria() {
+    $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $tamanho = 8;
+    $novaSenha = '';
+
+    for ($i = 0; $i < $tamanho; $i++) {
+        $novaSenha .= $caracteres[rand(0, strlen($caracteres) - 1)];
+    }
+
+    return $novaSenha;
+}
+
+// Envia um email com a nova senha para o usuário
+function enviarEmailComNovaSenha($login, $novaSenha) {
+    $to = $login;
+    $subject = 'Nova senha para acesso ao sistema';
+    $message = 'Sua nova senha é: ' . $novaSenha;
+    $headers = 'From: escolacaesguias@gmail.com' . "\r\n" .
+               'Reply-To: escolacaesguias@gmail.com' . "\r\n" .
+               'X-Mailer: PHP/' . phpversion();
+
+    mail($to, $subject, $message, $headers);
+}
+
+public function processRequest($actionName) {
+        // Chama a ação correspondente e exibe o resultado
+        switch ($actionName) {
+            case "enviarEmail":
+                $this->enviarEmail();
+                break;
+            default:
+                http_response_code(404);
+                echo "Página não encontrada.";
+        }
+    }
+}
 
 ?>
-

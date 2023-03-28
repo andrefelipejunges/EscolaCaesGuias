@@ -1,6 +1,7 @@
 <?php
 
-include 'esqueleto.php';
+include_once "../../../config.php";
+include DIR_PATH.'app/views/Esqueleto/esqueleto.php';
 
 ?>
 
@@ -11,16 +12,20 @@ include 'esqueleto.php';
 </head>
 
 <body>	
-	<form method="post" action="RecuperarSenha.php">
+	<form method="post" action ="<?php echo URL_BASE.'app/routes/routes.php?action=enviarEmail';?>">
 		<div class="container-login"> 
 			<h1 class="h3 mb-3 font-weight-normal"><b>Recuperar Senha</b></h1>
-			<p> Digite o endereço de e-mail. Você receberá um e-mail com instruções sobre como redefinir a sua senha. </p>
-			<label for="email" class="sr-only"></label>
-			<input type="email" name="email" class="form-control" value="" placeholder="Email" required>
+			<p> Digite o seu Login. Você receberá um e-mail com instruções sobre como redefinir a sua senha. </p>
+			<label for="login" class ="sr-only"></label>
+			<input type="login" name="login" class="form-control" value="" placeholder="Login" required>
 			<?php session_start(); ?>
 
 			<?php if (isset($_SESSION["MensagemSucessoEmail"])) { ?>
 			<div class="alert alert-success" role="alert"><?php echo "Email de recuperação enviado com sucesso"; ?></div>
+			<?php } ?>
+
+			<?php if (isset($_SESSION["MensagemErroEmail"])) { ?>
+			<div class="alert alert-danger" role="alert"><?php echo "Login não encontrado"; ?></div>
 			<?php } ?>
 			<?php session_destroy(); ?>
 
