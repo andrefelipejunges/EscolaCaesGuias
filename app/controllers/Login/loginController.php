@@ -19,7 +19,6 @@ class LoginController {
             // Inicia a sessão do usuário e redireciona para a página principal
             session_start();
             header('Location:'.URL_BASE.'app/views/Esqueleto/index.php');
-           // header('Location: index.php');
         } else {
             // Exibe uma mensagem de erro na página de login
              session_start();
