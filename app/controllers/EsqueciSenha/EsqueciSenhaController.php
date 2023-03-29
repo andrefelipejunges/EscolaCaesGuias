@@ -57,7 +57,7 @@ function enviarEmailComNovaSenha($login, $novaSenha) {
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'escolacaesguias@gmail.com'; 
-    $mail->Password = 'unqqzdwfwkxduxoc'; 
+    $mail->Password = 'segredo:)'; 
     $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
 
