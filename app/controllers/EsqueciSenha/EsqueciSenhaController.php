@@ -2,6 +2,10 @@
 
 require_once DIR_PATH.'/app/models/EsqueciSenha/EsqueciSenhaModel.php';
 
+require_once DIR_PATH.'/vendor/phpmailer/src/PHPMailer.php';
+require_once DIR_PATH.'/vendor/phpmailer/src/SMTP.php';
+require_once DIR_PATH.'/vendor/phpmailer/src/Exception.php';
+
 class EsqueciSenhaController {
 
     public function enviarEmail() {
@@ -45,16 +49,61 @@ function gerarNovaSenhaAleatoria() {
     return $novaSenha;
 }
 
-// Envia um email com a nova senha para o usuário
 function enviarEmailComNovaSenha($login, $novaSenha) {
-    $to = $login;
-    $subject = 'Nova senha para acesso ao sistema';
-    $message = 'Sua nova senha é: ' . $novaSenha;
-    $headers = 'From: escolacaesguias@gmail.com' . "\r\n" .
-               'Reply-To: escolacaesguias@gmail.com' . "\r\n" .
-               'X-Mailer: PHP/' . phpversion();
+    // Instancia um objeto do PHPMailer
+    $mail = new PHPMailer\PHPMailer\PHPMailer();
+    
+    // Define as configurações do servidor SMTP
+    $mail->isSMTP();
+    $mail->SMTPDebug = 0; // Descomente esta linha para depurar problemas de envio de email
+    $mail->Host = 'smtp.gmail.com'; // Substitua pelo servidor SMTP que você está usando
+    $mail->SMTPAuth = true;
+    $mail->Username = 'escolacaesguias@gmail.com'; // Substitua pelo seu email
+    $mail->Password = 'unqqzdwfwkxduxoc'; // Substitua pela sua senha
+    $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = 465;
 
-    mail($to, $subject, $message, $headers);
+    // Define as informações do remetente e destinatário
+    $mail->setFrom('escolacaesguias@gmail.com', 'EscolaCaesGuias');
+    $mail->addAddress("escolacaesguias@gmail.com");
+
+    // Define o assunto e o corpo da mensagem
+    $mail->CharSet = 'UTF-8';
+    $mail->isHTML(true);
+    $mail->Subject = 'Nova senha para acesso ao sistema Escola Cães Guias';
+    $mail->Body = '
+        <html>
+            <head>
+                <title>Nova senha para acesso ao sistema Escola Cães Guias</title>
+                <style>
+                    h1 {
+                        color: #4CAF50;
+                    }
+                    .container {
+                        border: 1px solid #ccc;
+                        padding: 20px;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>Nova senha para acesso ao sistema Escola Cães Guias</h1>
+                    <p>Olá,</p>
+                    <p>Uma nova senha foi gerada para o usuário com o login <strong>' . $login . '</strong>. A nova senha é:</p>
+                    <p style="font-size: 20px; font-weight: bold;">' . $novaSenha . '</p>
+                    <p>Para acessar o sistema, utilize esta nova senha no lugar da antiga.</p>
+                    <p>Caso não tenha solicitado a troca da senha, entre em contato conosco imediatamente.</p>
+                </div>
+            </body>
+        </html>
+    ';
+
+    // Envia o email e verifica se ocorreu algum erro
+    if (!$mail->send()) {
+        echo 'Erro ao enviar o email: ' . $mail->ErrorInfo;
+    }
 }
 
 public function processRequest($actionName) {

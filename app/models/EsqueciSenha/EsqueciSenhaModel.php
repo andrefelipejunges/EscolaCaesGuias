@@ -19,9 +19,7 @@ class EsqueciSenhaModel {
         $conn = new Conexao();
         $conn = $conn->conectar();
 
-        $senhaCriptografada = password_hash($novaSenha, PASSWORD_DEFAULT); // criptografa a nova senha
-
         $stmt = $conn->prepare("UPDATE usuarios SET senha = ? WHERE login = ?");
-        $stmt->execute([$senhaCriptografada, $login]);
+        $stmt->execute([$novaSenha, $login]);
     }
 }
