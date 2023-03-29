@@ -9,16 +9,15 @@ require_once DIR_PATH.'/vendor/phpmailer/src/Exception.php';
 class EsqueciSenhaController {
 
     public function enviarEmail() {
-        // Recupera o login informado pelo usuário
+
         session_start();
         $login = $_POST['login'];
 
         // Cria uma instância do modelo de usuário
         $usuarioModel = new EsqueciSenhaModel();
 
-        // Verifica se o usuário com o login informado existe
         if ($usuarioModel->existeUsuarioPorLogin($login)) {
-            // Gera uma nova senha aleatória
+
             $novaSenha = $this->gerarNovaSenhaAleatoria();
 
             // Atualiza a senha do usuário no banco de dados
@@ -26,10 +25,9 @@ class EsqueciSenhaController {
 
             // Envia um email com a nova senha para o usuário
             $this->enviarEmailComNovaSenha($login, $novaSenha);
-            // Exibe uma mensagem informando que a nova senha foi enviada por email
+
             $_SESSION["MensagemSucessoEmail"] = "OK";
         } else {
-            // Exibe uma mensagem de erro informando que o login informado não existe
             $_SESSION["MensagemErroEmail"] = "OK";
         }
 
@@ -55,11 +53,11 @@ function enviarEmailComNovaSenha($login, $novaSenha) {
     
     // Define as configurações do servidor SMTP
     $mail->isSMTP();
-    $mail->SMTPDebug = 0; // Descomente esta linha para depurar problemas de envio de email
-    $mail->Host = 'smtp.gmail.com'; // Substitua pelo servidor SMTP que você está usando
+    $mail->SMTPDebug = 0; 
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'escolacaesguias@gmail.com'; // Substitua pelo seu email
-    $mail->Password = 'unqqzdwfwkxduxoc'; // Substitua pela sua senha
+    $mail->Username = 'escolacaesguias@gmail.com'; 
+    $mail->Password = 'unqqzdwfwkxduxoc'; 
     $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
 
