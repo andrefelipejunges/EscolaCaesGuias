@@ -1,5 +1,5 @@
 <?php
-require_once("../models/Entidades/Usuarios/cadastroLivro.php");
+require_once("../models/Usuarios/UsuariosModel.php");
 class cadastroController{
 
     private $cadastro;
@@ -15,7 +15,7 @@ class cadastroController{
         $this->cadastro->setCPF($_POST['email']);
         $result = $this->cadastro->incluir();
         if($result >= 1){
-            echo "<script>alert('Registro incluído com sucesso!');document.location='../view/cadastro.php'</script>";
+            echo "<script>alert('Registro incluído com sucesso!');document.location='../view/Usuarios/UsuariosView.php'</script>";
         }else{
             echo "<script>alert('Erro ao gravar registro!, verifique se o livro não está duplicado');history.back()</script>";
         }

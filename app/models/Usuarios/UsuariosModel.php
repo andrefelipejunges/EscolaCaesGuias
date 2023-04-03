@@ -2,7 +2,7 @@
 
 require_once DIR_PATH.'/core/conexao.php';
 
-class Usuarios extends Banco {
+class UsuariosModel{
 
     private $login;
     private $senha;
@@ -33,18 +33,18 @@ class Usuarios extends Banco {
         return $this->setUsuario($this->getLogin(),$this->getSenha(),$this->getEmail());
     }
 
-    public function setLivro($nome,$autor,$quantidade,$preco,$data){
+    public function setUsuario($login,$senha,$email){
         $conn = new Conexao();
         $conn = $conn->conectar();        
 
-        $stmt = $conn->prepare("INSERT INTO livros (`nome`, `autor`, `quantidade`, `preco`, `data`) VALUES (?,?,?,?,?)");
-        $stmt->bind_param("sssss",$nome,$autor,$quantidade,$preco,$data);
-         if( $stmt->execute() == TRUE){
-            return true ;
+        $stmt = $conn->prepare("INSERT INTO usuarios (`LOGIN`, `SENHA`, `EMAIL`) VALUES (?,?,?)");
+        // $stmt->execute([$login, $senha, $email]);
+
+         if( $stmt->execute([$login, $senha, $email]) == TRUE){
+            return true;
         }else{
             return false;
-        }        
-
+        }
     }    
 }
 ?>
