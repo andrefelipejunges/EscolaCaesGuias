@@ -38,6 +38,16 @@ main {
   background-color:	#C0C0C0;
 }
 
+.container-cadastro {
+	margin: 150px auto;
+	max-width: 900px;
+	padding: 60px;
+	border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color:	#C0C0C0;
+}
+
+
 .Container-Menu-principal {
 	margin: 116px auto;
   background-color:	#2F4F4F;
@@ -97,4 +107,41 @@ p {
 	line-height: 1.5;
 	color: #333;
 	margin-bottom: 20px;
+}
+
+/*base-formulario*/
+.base-home .base-formulario{
+	width:100%;
+	float:left;
+	padding:10px 60px;
+}
+.base-home .base-formulario label{
+	display:block;
+	padding-top:15px;
+	padding-bottom:5px;
+	font-size:.8em;
+	text-transform:uppercase;
+	color:#666666;
+}
+.base-home .base-formulario .col{
+	width:48%;
+	float:left;
+	margin-bottom:15px;
+}
+.base-home .base-formulario .col:nth-of-type(2n+0){
+	float:right;
+}
+.base-home .base-formulario .btn{
+	display:inline-block;
+	width:auto;
+	padding:10px 25px;
+	margin-top:30px;
+}
+.base-home .base-formulario .btn.limpar{
+	background:#C7C7D3;
+	color:#484860;
+	height:38px;
+}
+.base-home .base-formulario .btn.limpar:hover{
+	background:#ACACBD;
 }

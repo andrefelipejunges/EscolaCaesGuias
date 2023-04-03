@@ -3,6 +3,7 @@
 include_once "../../config.php";
 require_once DIR_PATH.'app/controllers/Login/LoginController.php';
 require_once DIR_PATH.'app/controllers/EsqueciSenha/EsqueciSenhaController.php';
+require_once DIR_PATH.'app/controllers/Usuarios/ControllerCadastro.php';
 
 // Define as rotas para cada ação do controlador de Login
 $routes = [
@@ -17,6 +18,10 @@ $routes = [
     "action=enviarEmail" => [
         "controller" => "EsqueciSenhaController",
         "action" => "enviarEmail"
+    ],
+    "action=cadastrarUsuario" => [
+        "controller" => "UsuariosController",
+        "action" => "incluir"
     ]
 ];
 

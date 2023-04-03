@@ -36,7 +36,7 @@ include_once "../../../config.php";
             <div class="dropdown-content">
               <a href="<?php echo URL_BASE.'app/views/Tutores/Tutores.php';?>">Tutores</a>
               <a href="<?php echo URL_BASE.'app/views/Caes/Caes.php';?>">Cães</a>
-              <a href="<?php echo URL_BASE.'app/views/Usuarios/Usuarios.php';?>">Usuários</a>
+              <a href="<?php echo URL_BASE.'app/views/Usuarios/UsuariosView.php';?>">Usuários</a>
               <a href="<?php echo URL_BASE.'app/views/Terceiros/Terceiros.php';?>">Terceiros</a>
               <a href="<?php echo URL_BASE.'app/views/GrupoUsuarios/GrupoUsuarios.php';?>">Grupo de usuários</a>
             </div>
