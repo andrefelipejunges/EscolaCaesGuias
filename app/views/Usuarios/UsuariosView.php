@@ -1,6 +1,6 @@
 <?php
 
-include_once "../../../config.php";
+include_once "../../../Config.php";
 include DIR_PATH.'app/views/Esqueleto/Esqueleto.php';
 
 if(isset($_POST['submit'])) {

@@ -1,5 +1,5 @@
 <?php
-include 'esqueleto.php';
+include 'Esqueleto.php';
 ?>
 
 <!DOCTYPE html>
