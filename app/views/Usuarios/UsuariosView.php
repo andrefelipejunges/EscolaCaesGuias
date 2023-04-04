@@ -12,7 +12,7 @@ if(isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dados</title>
+    <title>Cadastro de usuário</title>
     <body>  
 
         <form method="post" action ="<?php echo URL_BASE.'app/routes/routes.php?action=cadastrarUsuario';?>">
@@ -30,7 +30,7 @@ if(isset($_POST['submit'])) {
                 </div>
                 <div class="col">
                     <label>E-mail</label>
-                    <input name="email" class="form-control" type="text" placeholder="E-mail..." 
+                    <input name="email" type="email" class="form-control" type="text" placeholder="E-mail..." 
                     required>
                 </div>
 

@@ -18,7 +18,7 @@ include_once "../../../config.php";
 <body>
   <header>
     <nav class="navbar fixed-top navbar-light bg-light" style ="background-color:#F8F8FF;">
-        <a class="navbar-brand" href="index.php"><img src="<?php echo URL_BASE.'assets/img/Logo_Escola_Caes_Guias_Keller.png';?>" class ="logo"> </a>
+        <a class="navbar-brand" href="<?php echo URL_BASE.'app/views/Esqueleto/index.php';?>"><img src="<?php echo URL_BASE.'assets/img/Logo_Escola_Caes_Guias_Keller.png';?>" class ="logo"> </a>
     </nav>
   </header>
   
@@ -34,7 +34,7 @@ include_once "../../../config.php";
             <a href="#" class="dropdown-btn">Cadastros</a>
             <!-- Cria o conteúdo do dropdown -->
             <div class="dropdown-content">
-              <a href="<?php echo URL_BASE.'app/views/Tutores/Tutores.php';?>">Tutores</a>
+              <a href="<?php echo URL_BASE.'app/views/Tutores/Tutores2.php';?>">Tutores</a>
               <a href="<?php echo URL_BASE.'app/views/Caes/Caes.php';?>">Cães</a>
               <a href="<?php echo URL_BASE.'app/views/Usuarios/UsuariosView.php';?>">Usuários</a>
               <a href="<?php echo URL_BASE.'app/views/Terceiros/Terceiros.php';?>">Terceiros</a>

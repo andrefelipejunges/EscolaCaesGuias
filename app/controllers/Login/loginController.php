@@ -18,6 +18,7 @@ class LoginController {
         if ($authenticated) {
             // Inicia a sessão do usuário e redireciona para a página principal
             session_start();
+            $_SESSION["usuario_logado"] = $login;    
             header('Location:'.URL_BASE.'app/views/Esqueleto/index.php');
         } else {
             // Exibe uma mensagem de erro na página de login
@@ -31,7 +32,7 @@ class LoginController {
         // Finaliza a sessão do usuário e redireciona para a página de login
         session_start();
         session_destroy();
-        header('Location: login.php');
+        header('Location:'.URL_BASE.'app/views/Login/LoginView.php');
     }
 
      public function processRequest($actionName) {
