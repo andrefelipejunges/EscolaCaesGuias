@@ -1,10 +1,10 @@
 <?php
 
 include_once "../../../config.php";
-include DIR_PATH.'app/views/Esqueleto/esqueleto.php';
+include DIR_PATH.'app/views/Esqueleto/Esqueleto.php';
 
 if(isset($_POST['submit'])) {
-    require_once DIR_PATH.'app/routes/routes.php';
+    require_once DIR_PATH.'app/routes/Routes.php';
 }
 
 ?>

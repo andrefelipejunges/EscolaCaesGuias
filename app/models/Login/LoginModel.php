@@ -1,6 +1,6 @@
 <?php
 
-require_once DIR_PATH.'/core/conexao.php';
+require_once DIR_PATH.'/core/Conexao.php';
 
 class Usuario {
     private $login;

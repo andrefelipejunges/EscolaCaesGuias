@@ -1,6 +1,6 @@
 <?php
 
-include_once "../../config.php";
+include_once "../../Config.php";
 require_once DIR_PATH.'app/controllers/Login/LoginController.php';
 require_once DIR_PATH.'app/controllers/EsqueciSenha/EsqueciSenhaController.php';
 require_once DIR_PATH.'app/controllers/Usuarios/UsuariosController.php';
