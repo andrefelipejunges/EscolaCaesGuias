@@ -28,17 +28,22 @@ include_once "../../../config.php";
       <nav>
         <ul class="menu">
           <li><a href ="<?php echo URL_BASE.'app/views/Esqueleto/index.php';?>"> Home</a></li>
-          <li><a href ="<?php echo URL_BASE.'app/views/Login/LoginView.php';?>"> Login</a></li>
+
+          <?php session_start()?>
+          <?php if(!isset($_SESSION["usuario_logado"])) { ?>
+
+            <li><a href ="<?php echo URL_BASE.'app/views/Login/LoginView.php';?>"> Login</a></li>
+          <?php } ?>
         
           <li class="dropdown">
             <a href="#" class="dropdown-btn">Cadastros</a>
             <!-- Cria o conteúdo do dropdown -->
             <div class="dropdown-content">
-              <a href="<?php echo URL_BASE.'app/views/Tutores/Tutores2.php';?>">Tutores</a>
-              <a href="<?php echo URL_BASE.'app/views/Caes/Caes.php';?>">Cães</a>
+              <a href="<?php echo URL_BASE.'app/views/Tutores/TutoresView.php';?>">Tutores</a>
+              <a href="<?php echo URL_BASE.'app/views/Caes/CaesView.php';?>">Cães</a>
               <a href="<?php echo URL_BASE.'app/views/Usuarios/UsuariosView.php';?>">Usuários</a>
-              <a href="<?php echo URL_BASE.'app/views/Terceiros/Terceiros.php';?>">Terceiros</a>
-              <a href="<?php echo URL_BASE.'app/views/GrupoUsuarios/GrupoUsuarios.php';?>">Grupo de usuários</a>
+              <a href="<?php echo URL_BASE.'app/views/Terceiros/TerceirosView.php';?>">Terceiros</a>
+              <a href="<?php echo URL_BASE.'app/views/GrupoUsuarios/GrupoUsuariosView.php';?>">Grupo de usuários</a>
             </div>
           </li>
 
@@ -52,6 +57,11 @@ include_once "../../../config.php";
               <a href="<?php echo URL_BASE.'app/views/Caes/Caes.php';?>">Cães</a>
               <a href="<?php echo URL_BASE.'app/views/Usuarios/Usuarios.php';?>">Usuários</a>
             </div>
+
+          <?php if(isset($_SESSION["usuario_logado"])) { ?>
+            <li><a href ="<?php echo URL_BASE.'app/routes/routes.php?action=logout';?>"> Sair</a></li>
+          <?php } ?>
+        
           </li>
       </ul>
     </div>

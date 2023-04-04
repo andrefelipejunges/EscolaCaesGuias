@@ -30,8 +30,6 @@ $route = $_SERVER["REQUEST_URI"];
 $routeParts = explode("?", $route);
 $route = $routeParts[1];
 
-//var_dump($route);
-
 // Se a rota existir nas rotas definidas, processa a requisição
 if (array_key_exists($route, $routes)) {
     $controllerName = $routes[$route]["controller"];

@@ -9,6 +9,8 @@ class LoginController {
         $login = $_POST['login'];
         $senha = $_POST['senha'];
 
+        session_start();
+
         // Cria um novo objeto de usuário
         $user = new Usuario($login, $senha);
 
@@ -17,12 +19,10 @@ class LoginController {
 
         if ($authenticated) {
             // Inicia a sessão do usuário e redireciona para a página principal
-            session_start();
-            $_SESSION["usuario_logado"] = $login;    
+            $_SESSION["usuario_logado"] = $login;  
             header('Location:'.URL_BASE.'app/views/Esqueleto/index.php');
         } else {
             // Exibe uma mensagem de erro na página de login
-             session_start();
              $_SESSION["MensagemErroLogin"] = "OK";
              header('Location:'.URL_BASE.'app/views/Login/LoginView.php');
         }

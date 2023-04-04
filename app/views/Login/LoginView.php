@@ -25,11 +25,10 @@ if(isset($_POST['submit'])) {
 			<a href="http://localhost/EscolaCaesGuias/app/views/EsqueciSenha/EsqueciSenhaView.php"> Esqueci minha senha</a>
 			<button class="btn btn-lg btn-primary btn-block" type="submit"  name="submit">Entrar</button>
 
-			<?php session_start(); ?>
 			<?php if (isset($_SESSION["MensagemErroLogin"])) { ?>
 			<div class="alert alert-danger" role="alert"><?php echo "Login ou senha incorretos"; ?></div>
 			<?php } ?>
-			<?php session_destroy(); ?>
+			<?php unset($_SESSION['MensagemErroLogin']); ?>
 
 		</div>
 	</form>
