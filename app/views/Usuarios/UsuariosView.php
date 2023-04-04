@@ -25,12 +25,12 @@ if(isset($_POST['submit'])) {
                 </div>
                 <div class="col">
                     <label>Senha</label>
-                    <input name="senha" class="form-control" type="text" placeholder="Senha..." 
+                    <input name="senha" class="form-control" type="password" placeholder="Senha..." 
                     required>
                 </div>
                 <div class="col">
                     <label>E-mail</label>
-                    <input name="email" type="email" class="form-control" type="text" placeholder="E-mail..." 
+                    <input name="email" class="form-control" type="email" placeholder="E-mail..." 
                     required>
                 </div>
 
