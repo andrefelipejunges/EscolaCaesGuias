@@ -35,7 +35,10 @@ include_once "../../../Config.php";
             <li><a href ="<?php echo URL_BASE.'app/views/Login/LoginView.php';?>"> Login</a></li>
           <?php } ?>
         
-          <li class="dropdown">
+          
+          <?php if(isset($_SESSION["usuario_logado"])) { ?>
+           
+            <li class="dropdown">
             <a href="#" class="dropdown-btn">Cadastros</a>
             <!-- Cria o conteúdo do dropdown -->
             <div class="dropdown-content">
@@ -58,8 +61,8 @@ include_once "../../../Config.php";
               <a href="<?php echo URL_BASE.'app/views/Usuarios/Usuarios.php';?>">Usuários</a>
             </div>
 
-          <?php if(isset($_SESSION["usuario_logado"])) { ?>
             <li><a href ="<?php echo URL_BASE.'app/routes/routes.php?action=logout';?>"> Sair</a></li>
+
           <?php } ?>
         
           </li>
