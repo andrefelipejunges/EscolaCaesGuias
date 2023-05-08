@@ -31,13 +31,24 @@ class TutoresModel{
         return $this->usuario;
     }
     public function getCpf(){
-        return $this->cpf;
+        return str_replace(['.', '-'], '', $this->cpf);
     }
     public function getNascimento(){
         return $this->nascimento;
     }
 
-      public function TutorJaCadastrado() {
+    public function CpfJaExiste() {
+        $conn = new Conexao();
+        $conn = $conn->conectar();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tutores WHERE CPF = ?");
+        $stmt->execute([$this->getCpf()]);
+        //die(var_dump($this->getCpf()));
+        $result = $stmt->fetchColumn();
+        return $result > 0;
+    }
+
+    public function TutorJaCadastrado() {
         $conn = new Conexao();
         $conn = $conn->conectar();
 
@@ -50,39 +61,41 @@ class TutoresModel{
    public function incluir(){
         session_start();
         $conn = new Conexao();
-        $conn = $conn->conectar();        
+        $conn = $conn->conectar(); 
 
-        // Insere o novo registro
-        $stmt = $conn->prepare("INSERT INTO tutores (`NOME`, `USUARIO`, `CPF`, `DATA_NASCIMENTO` ) VALUES (?,?,?,?)");
-        try {
-            if($stmt->execute([$this->getNome(), $this->getUsuario(), $this->getCpf(), $this->getNascimento()])) {
-                return true;
+        if ($this->CpfJaExiste()) {
+            $_SESSION["MsgCpfJaCadastradoTutor"] = "Já existe um tutor cadastrado com esse CPF";
+        }else{
+            // Insere o novo registro
+            $stmt = $conn->prepare("INSERT INTO tutores (`NOME`, `USUARIO`, `CPF`, `DATA_NASCIMENTO` ) VALUES (?,?,?,?)");
+            try {
+                if($stmt->execute([$this->getNome(), $this->getUsuario(), $this->getCpf(), $this->getNascimento()])) {
+                    return true;
+                }
+            } catch(PDOException $e) {
+                $_SESSION["MsgErroCadastroTutor"] = "Ocorreu algum erro ao cadastrar o tutor";
             }
-        } catch(PDOException $e) {
-            // Exibe uma mensagem de erro mais descritiva para o usuário
-            $_SESSION["MsgErroCadastroTutor"] = "Ocorreu algum erro ao cadastrar o tutor";
         }
 
         return false;   
     }  
 
     public function editar(){
-    session_start();
-    $conn = new Conexao();
-    $conn = $conn->conectar();
+        session_start();
+        $conn = new Conexao();
+        $conn = $conn->conectar();
 
-    // Atualiza o registro
-    $stmt = $conn->prepare("UPDATE tutores SET NOME = ?, CPF = ?, DATA_NASCIMENTO = ? WHERE USUARIO = ?");
-    try {
-        if($stmt->execute([$this->getNome(), $this->getCpf(), $this->getNascimento(), $this->getUsuario()])) {
-            return true;
+        // Atualiza o registro
+        $stmt = $conn->prepare("UPDATE tutores SET NOME = ?, CPF = ?, DATA_NASCIMENTO = ? WHERE USUARIO = ?");
+        try {
+            if($stmt->execute([$this->getNome(), $this->getCpf(), $this->getNascimento(), $this->getUsuario()])) {
+                return true;
+            }
+        } catch(PDOException $e) {
+            $_SESSION["MsgErroEditarTutor"] = "Ocorreu algum erro ao editar o tutor";
         }
-    } catch(PDOException $e) {
-        // Exibe uma mensagem de erro mais descritiva para o usuário
-        $_SESSION["MsgErroEditarTutor"] = "Ocorreu algum erro ao editar o tutor";
-    }
 
-    return false;   
+        return false;   
 }
 }
 ?>

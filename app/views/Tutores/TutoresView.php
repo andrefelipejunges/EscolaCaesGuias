@@ -40,6 +40,10 @@ if(isset($_POST['submit'])) {
             <div class="alert alert-success" role="alert"><?php echo $_SESSION["MsgSucessoTutor"]; ?></div>
             <?php } ?>
 
+            <?php if (isset($_SESSION["MsgCpfJaCadastradoTutor"])) { ?>
+            <div class="alert alert-danger" role="alert"><?php echo $_SESSION["MsgCpfJaCadastradoTutor"]; ?></div>
+            <?php } ?>
+
             <?php if (isset($_SESSION["MsgErroTutor"])) { ?>
             <div class="alert alert-danger" role="alert"><?php echo $_SESSION["MsgErroTutor"]; ?></div>
             <?php } ?>
