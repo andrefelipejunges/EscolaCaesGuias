@@ -27,20 +27,20 @@ class Usuario {
     }
 
     public function ObterIdUsuario() {
-    $conn = new Conexao();
-    $conn = $conn->conectar();
+        $conn = new Conexao();
+        $conn = $conn->conectar();
 
-    $stmt = $conn->prepare("SELECT id FROM usuarios WHERE login=? AND senha=?");
-    $stmt->execute([$this->login, $this->senha]);
+        $stmt = $conn->prepare("SELECT id FROM usuarios WHERE login=? AND senha=?");
+        $stmt->execute([$this->login, $this->senha]);
 
-    if ($stmt->rowCount() == 1) {
-        // Se houver exatamente 1 linha no resultado, retorna o ID
-        return $stmt->fetchColumn();
-    } else {
-        // Caso contrário, retorna falso
-        return false;
+        if ($stmt->rowCount() == 1) {
+            // Se houver exatamente 1 linha no resultado, retorna o ID
+            return $stmt->fetchColumn();
+        } else {
+            // Caso contrário, retorna falso
+            return false;
+        }
     }
-}
 }
 
 ?>

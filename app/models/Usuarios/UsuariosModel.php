@@ -4,19 +4,27 @@ require_once DIR_PATH.'/core/conexao.php';
 
 class UsuariosModel{
 
+    private $id;
     private $login;
     private $senha;
     private $email;
 
     //Metodos Set
-    public function setLogin($string){
-        $this->login = $string;
+    public function setId($id){
+        $this->id = $id;
     }
-    public function setSenha($string){
-        $this->senha = $string;
+    public function setLogin($login){
+        $this->login = $login;
     }
-    public function setEmail($string){
-        $this->email = $string;
+    public function setSenha($senha){
+        $this->senha = $senha;
+    }
+    public function setEmail($email){
+        $this->email = $email;
+    }
+    //Metodos Get
+    public function getId(){
+        return $this->id;
     }
     //Metodos Get
     public function getLogin(){
@@ -59,6 +67,24 @@ class UsuariosModel{
         return false;
     }
 
+    public function editar(){
+        session_start();
+        $conn = new Conexao();
+        $conn = $conn->conectar();
+
+        // Atualiza o registro
+        $stmt = $conn->prepare("UPDATE usuarios SET LOGIN = ?, SENHA = ?, EMAIL = ? WHERE ID = ?");
+        try {
+             if($stmt->execute([$this->getLogin(), $this->getSenha(), $this->getEmail(), $this->getId()])) {
+                return true;
+            }
+        } catch(PDOException $e) {
+            $_SESSION["MsgErroEditarTutor"] = "Ocorreu algum erro ao editar o usuario";
+        }
+
+        return false;   
+    }
+
     public function LoginJaExiste() {
         $conn = new Conexao();
         $conn = $conn->conectar();
@@ -79,12 +105,31 @@ class UsuariosModel{
         return $result > 0;
     }
 
+    public function UsuarioExiste() {
+        $conn = new Conexao();
+        $conn = $conn->conectar();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE ID = ?");
+        $stmt->execute([$this->getId()]);
+        $result = $stmt->fetchColumn();
+        return $result > 0;
+    }
+
     public function consultar(){
         $conn = new Conexao();
         $conn = $conn->conectar();        
         $stmt = $conn->prepare("SELECT * FROM usuarios");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ConsultarUsuarioLogado(){
+        $conn = new Conexao();
+        $conn = $conn->conectar();        
+        $stmt = $conn->prepare("SELECT * FROM usuarios where id = ?");
+        $stmt->execute([$_SESSION["id_usuario_logado"]]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
     }
 }
 ?>

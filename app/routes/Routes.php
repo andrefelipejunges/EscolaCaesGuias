@@ -20,17 +20,17 @@ $routes = [
         "controller" => "EsqueciSenhaController",
         "action" => "enviarEmail"
     ],
-    "action=cadastrarUsuario" => [
+    "action=SalvarUsuario" => [
         "controller" => "UsuariosController",
-        "action" => "cadastrarUsuario"
+        "action" => "salvarUsuario"
     ],
     "action=consultarUsuario" => [
         "controller" => "UsuariosController",
         "action" => "consultar"
     ],
-    "action=cadastrarTutor" => [
+    "action=salvarTutor" => [
         "controller" => "TutoresController",
-        "action" => "cadastrarTutor"
+        "action" => "salvarTutor"
     ]
 ];
 

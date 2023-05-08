@@ -37,46 +37,20 @@ class TutoresModel{
         return $this->nascimento;
     }
 
-    public function CpfJaExiste() {
-        $conn = new Conexao();
-        $conn = $conn->conectar();
-
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM tutores WHERE CPF = ?");
-        $stmt->execute([$this->getCpf()]);
-        //die(var_dump($this->getCpf()));
-        $result = $stmt->fetchColumn();
-        return $result > 0;
-    }
-
-    public function TutorJaCadastrado() {
-        $conn = new Conexao();
-        $conn = $conn->conectar();
-
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM tutores WHERE USUARIO = ?");
-        $stmt->execute([$this->getUsuario()]);
-        $result = $stmt->fetchColumn();
-        return $result > 0;
-    }
-
    public function incluir(){
         session_start();
         $conn = new Conexao();
         $conn = $conn->conectar(); 
 
-        if ($this->CpfJaExiste()) {
-            $_SESSION["MsgCpfJaCadastradoTutor"] = "Já existe um tutor cadastrado com esse CPF";
-        }else{
-            // Insere o novo registro
-            $stmt = $conn->prepare("INSERT INTO tutores (`NOME`, `USUARIO`, `CPF`, `DATA_NASCIMENTO` ) VALUES (?,?,?,?)");
-            try {
-                if($stmt->execute([$this->getNome(), $this->getUsuario(), $this->getCpf(), $this->getNascimento()])) {
-                    return true;
-                }
-            } catch(PDOException $e) {
-                $_SESSION["MsgErroCadastroTutor"] = "Ocorreu algum erro ao cadastrar o tutor";
+        $stmt = $conn->prepare("INSERT INTO tutores (`NOME`, `USUARIO`, `CPF`, `DATA_NASCIMENTO` ) VALUES (?,?,?,?)");
+        try {
+            if($stmt->execute([$this->getNome(), $this->getUsuario(), $this->getCpf(), $this->getNascimento()])) {
+                return true;
             }
+        } catch(PDOException $e) {
+            $_SESSION["MsgErroCadastroTutor"] = "Ocorreu algum erro ao cadastrar o tutor";
         }
-
+        
         return false;   
     }  
 
@@ -96,6 +70,25 @@ class TutoresModel{
         }
 
         return false;   
-}
+    }
+
+    public function TutorExiste() {
+        $conn = new Conexao();
+        $conn = $conn->conectar();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tutores WHERE USUARIO = ?");
+        $stmt->execute([$this->getUsuario()]);
+        $result = $stmt->fetchColumn();
+        return $result > 0;
+    }
+
+    public function ConsultarTutorLogado(){
+        $conn = new Conexao();
+        $conn = $conn->conectar();        
+        $stmt = $conn->prepare("SELECT * FROM tutores where USUARIO = ?");
+        $stmt->execute([$_SESSION["id_usuario_logado"]]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+    }
 }
 ?>

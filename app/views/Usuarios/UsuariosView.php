@@ -7,6 +7,29 @@ if(isset($_POST['submit'])) {
     require_once DIR_PATH.'app/routes/Routes.php';
 }
 
+// Cria uma instância do controlador de Tutores
+require_once DIR_PATH.'/app/controllers/Usuarios/UsuariosController.php';
+$usuariosController = new UsuariosController();
+
+// Recupera o usuario logado
+$usuario = $usuariosController->processRequest("consultarUsuarioLogado");
+
+// Verifica se o objeto $usuario não é nulo
+if ($usuario != null) {
+    // Define as variáveis para preencher os campos da tela
+    $nome = $usuario->getNome();
+    $senha = $usuario->getCpf();
+    $email = $usuario->getEmail();
+
+} else {
+    // Define as variáveis como vazias caso o objeto $usuario seja nulo
+    $nome = "";
+    $senha = "";
+    $email = "";
+} 
+
+?>
+
 ?>
 
 <!DOCTYPE html>
@@ -14,22 +37,22 @@ if(isset($_POST['submit'])) {
 <head>
     <title>Cadastro de usuário</title>
     <body>  
-        <form method="post" action ="<?php echo URL_BASE.'app/routes/routes.php?action=cadastrarUsuario';?>">
+        <form method="post" action ="<?php echo URL_BASE.'app/routes/routes.php?action=SalvarUsuario';?>">
             <div class="container-cadastro"> 
                  <h1 class="h3 mb-3 font-weight-normal"><b>Dados</b></h1>
                  <br>
             <div class="row"> 
                 <div class="col-md-4">
                    <b> <label for="login">Login:</label></b>
-                    <input id="login" name="login" class="form-control" type="text" placeholder="Login..." required>
+                    <input id="login" name="login" class="form-control" type="text" placeholder="Login..." value="<?php echo $nome; ?>" required>
                 </div>
                 <div class="col-md-4">
                    <b> <label for="senha">Senha:</label> </b>
-                    <input id="senha" name="senha" class="form-control" type="password" placeholder="Senha..." required>
+                    <input id="senha" name="senha" class="form-control" type="password" placeholder="Senha..." value="<?php echo $senha; ?>" required>
                 </div>
                 <div class="col-md-5">
                     <b><label for="email">E-mail</label></b>
-                    <input id="email" name="email" class="form-control" type="email" placeholder="E-mail..." required>
+                    <input id="email" name="email" class="form-control" type="email" placeholder="E-mail..." value="<?php echo $email; ?>" required>
                 </div>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Salvar</button>
