@@ -50,6 +50,7 @@ if(isset($_POST['submit'])) {
 
             <?php unset($_SESSION['MsgSucessoTutor']); ?>
             <?php unset($_SESSION['MsgErroTutor']); ?>
+            <?php unset($_SESSION['MsgCpfJaCadastradoTutor']); ?>
 
         </div>
         </form>
