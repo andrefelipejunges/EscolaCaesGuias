@@ -4,8 +4,6 @@ require_once DIR_PATH.'/app/models/Usuarios/UsuariosModel.php';
 
 class UsuariosController {
 
-    //private $usuario;
-
     public function __construct(){
         $this->usuario = new UsuariosModel();
     }
@@ -54,8 +52,15 @@ class UsuariosController {
     public function consultarUsuarioLogado() {
         // Chama a função "consultar" do modelo de Usuarios
         $resultado = $this->usuario->ConsultarUsuarioLogado();
-        // Retorna o resultado como um array de objetos
-        return $resultado;
+
+        if ($resultado) {
+            $this->usuario->setId($resultado['ID']);
+            $this->usuario->setLogin($resultado['LOGIN']);
+            $this->usuario->setSenha($resultado['SENHA']);
+            $this->usuario->setEmail($resultado['EMAIL']);   
+        }
+         // Retorna o objeto usuário com as informações do usuário atualmente logado
+        return $this->usuario;
     }
 
     public function processRequest($actionName) {
@@ -63,11 +68,14 @@ class UsuariosController {
         //die(var_dump($actionName));
         switch ($actionName) {
             case "salvarUsuario":
-            $this->incluirEditar();
-            break;
+                $this->incluirEditar();
+                break;
+            case "consultarUsuario":
+                return $this->consultar();
+                break;         
             case "consultarUsuarioLogado":
-            $this->consultarUsuarioLogado();
-            break;
+                 return $this->consultarUsuarioLogado();
+                break;
             default:
             http_response_code(404);
             echo "Página não encontrada.";

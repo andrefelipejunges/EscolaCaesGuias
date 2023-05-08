@@ -17,8 +17,8 @@ $usuario = $usuariosController->processRequest("consultarUsuarioLogado");
 // Verifica se o objeto $usuario não é nulo
 if ($usuario != null) {
     // Define as variáveis para preencher os campos da tela
-    $nome = $usuario->getNome();
-    $senha = $usuario->getCpf();
+    $login = $usuario->getLogin();
+    $senha = $usuario->getSenha();
     $email = $usuario->getEmail();
 
 } else {
@@ -44,7 +44,7 @@ if ($usuario != null) {
             <div class="row"> 
                 <div class="col-md-4">
                    <b> <label for="login">Login:</label></b>
-                    <input id="login" name="login" class="form-control" type="text" placeholder="Login..." value="<?php echo $nome; ?>" required>
+                    <input id="login" name="login" class="form-control" type="text" placeholder="Login..." value="<?php echo $login; ?>" required disabled>
                 </div>
                 <div class="col-md-4">
                    <b> <label for="senha">Senha:</label> </b>

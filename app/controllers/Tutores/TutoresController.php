@@ -44,18 +44,27 @@ class TutoresController {
     public function consultarTutorLogado() {
         // Chama a função "consultar" do modelo de tutores
         $resultado = $this->tutor->ConsultarTutorLogado();
-        // Retorna o resultado como um array de objetos
-        return $resultado;
+
+        if ($resultado) {
+            $this->tutor->setNome($resultado['NOME']);
+            $this->tutor->setCpf($resultado['CPF']);
+            $this->tutor->setNascimento($resultado['DATA_NASCIMENTO']);
+            $this->tutor->setUsuario($resultado['USUARIO']);
+        }
+
+        // Retorna o objeto usuário com as informações do usuário atualmente logado
+        return $this->tutor;
     }
 
     public function processRequest($actionName) {
         // Chama a ação correspondente e exibe o resultado
         switch ($actionName) {
             case "salvarTutor":
-            $this->incluirEditar();
+                $this->incluirEditar();
+                break;
             case "consultarTutorLogado":
-            $this->consultarTutorLogado();
-            break;
+                return $this->consultarTutorLogado();
+                break;
             default:
             http_response_code(404);
             echo "Página não encontrada.";
