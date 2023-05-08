@@ -4,11 +4,8 @@ require_once DIR_PATH.'/app/models/Tutores/TutoresModel.php';
 
 class TutoresController {
 
-    private $tutor;
-
     public function __construct(){
         $this->tutor = new TutoresModel();
-        $this->incluir();
     }
 
     private function incluir(){
