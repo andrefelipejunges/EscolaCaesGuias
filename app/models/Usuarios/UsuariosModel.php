@@ -33,14 +33,22 @@ class UsuariosModel{
         return $this->setUsuario($this->getLogin(),$this->getSenha(),$this->getEmail());
     }
 
+    public function consultar(){
+        $conn = new Conexao();
+        $conn = $conn->conectar();        
+        $stmt = $conn->prepare("SELECT * FROM usuarios");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function setUsuario($login,$senha,$email){
         $conn = new Conexao();
         $conn = $conn->conectar();        
 
         $stmt = $conn->prepare("INSERT INTO usuarios (`LOGIN`, `SENHA`, `EMAIL`) VALUES (?,?,?)");
-        // $stmt->execute([$login, $senha, $email]);
 
-         if( $stmt->execute([$login, $senha, $email]) == TRUE){
+        if( $stmt->execute([$login, $senha, $email]) == TRUE){
             return true;
         }else{
             return false;

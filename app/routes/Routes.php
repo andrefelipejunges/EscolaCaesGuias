@@ -22,7 +22,11 @@ $routes = [
     "action=cadastrarUsuario" => [
         "controller" => "UsuariosController",
         "action" => "incluir"
-    ]
+    ],
+    "action=consultarUsuario" => [
+        "controller" => "UsuariosController",
+        "action" => "consultar"
+    ]    
 ];
 
 // Pega a rota atual da URL

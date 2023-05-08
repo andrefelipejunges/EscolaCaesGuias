@@ -4,11 +4,20 @@ require_once DIR_PATH.'/app/models/Usuarios/UsuariosModel.php';
 
 class UsuariosController {
 
-    private $usuario;
+    //public $usuarios;
 
     public function __construct(){
         $this->usuario = new UsuariosModel();
-        $this->incluir();
+        //$this->incluir();
+        //$this->consultar();
+    }
+
+    // Função que retorna todos os usuários do banco de dados
+    public function consultar() {
+        // Chama a função "consultar" do modelo de usuários
+        $resultado = $this->usuario->consultar();
+        // Retorna o resultado como um array de objetos
+        return $resultado;
     }
 
     private function incluir(){
@@ -27,14 +36,17 @@ class UsuariosController {
         // Chama a ação correspondente e exibe o resultado
         switch ($actionName) {
             case "enviarEmail":
-            $this->enviarEmail();
-            break;
+                $this->enviarEmail();
+                break;
             case "cadastrarUsuario":
-            $this->incluir();
-            break;
+                $this->incluir();
+                break;
+            case "consultarUsuario":
+                return $this->consultar();
+                break;                
             default:
-            http_response_code(404);
-            echo "Página não encontrada.";
+                http_response_code(404);
+                echo "Página não encontrada.";
         }
     }
 }
