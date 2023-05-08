@@ -4,6 +4,7 @@ include_once "../../Config.php";
 require_once DIR_PATH.'app/controllers/Login/LoginController.php';
 require_once DIR_PATH.'app/controllers/EsqueciSenha/EsqueciSenhaController.php';
 require_once DIR_PATH.'app/controllers/Usuarios/UsuariosController.php';
+require_once DIR_PATH.'app/controllers/Tutores/TutoresController.php';
 
 // Define as rotas para cada ação do controlador de Login
 $routes = [
@@ -21,12 +22,16 @@ $routes = [
     ],
     "action=cadastrarUsuario" => [
         "controller" => "UsuariosController",
-        "action" => "incluir"
+        "action" => "cadastrarUsuario"
     ],
     "action=consultarUsuario" => [
         "controller" => "UsuariosController",
         "action" => "consultar"
-    ]    
+    ],
+    "action=cadastrarTutor" => [
+        "controller" => "TutoresController",
+        "action" => "cadastrarTutor"
+    ]
 ];
 
 // Pega a rota atual da URL

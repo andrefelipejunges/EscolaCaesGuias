@@ -11,20 +11,25 @@ class EsqueciSenhaController {
     public function enviarEmail() {
 
         session_start();
-        $login = $_POST['login'];
+        $email = $_POST['email'];
 
         // Cria uma instância do modelo de usuário
         $usuarioModel = new EsqueciSenhaModel();
 
-        if ($usuarioModel->existeUsuarioPorLogin($login)) {
+        $IDUsuario = $usuarioModel->retornarIDUsuario($email);
 
+        if ($IDUsuario)
+        {
             $novaSenha = $this->gerarNovaSenhaAleatoria();
 
             // Atualiza a senha do usuário no banco de dados
-            $usuarioModel->atualizarSenhaPorLogin($login, $novaSenha);
+            $usuarioModel->atualizarSenhaPorLogin($IDUsuario, $novaSenha);
+
+            $login = $usuarioModel->retornarLoginUsuario($IDUsuario);
 
             // Envia um email com a nova senha para o usuário
-            $this->enviarEmailComNovaSenha($login, $novaSenha);
+            $this->enviarEmailComNovaSenha($email, $login, $novaSenha);
+            //die(var_dump("passou"));
 
             $_SESSION["MensagemSucessoEmail"] = "OK";
         } else {
@@ -47,7 +52,7 @@ function gerarNovaSenhaAleatoria() {
     return $novaSenha;
 }
 
-function enviarEmailComNovaSenha($login, $novaSenha) {
+function enviarEmailComNovaSenha($email, $login, $novaSenha) {
     // Instancia um objeto do PHPMailer
     $mail = new PHPMailer\PHPMailer\PHPMailer();
     
@@ -57,13 +62,13 @@ function enviarEmailComNovaSenha($login, $novaSenha) {
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'escolacaesguias@gmail.com'; 
-    $mail->Password = 'segredo:)'; 
+    $mail->Password = 'icdfwjcdahlwgvan'; 
     $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
 
     // Define as informações do remetente e destinatário
     $mail->setFrom('escolacaesguias@gmail.com', 'EscolaCaesGuias');
-    $mail->addAddress("escolacaesguias@gmail.com");
+    $mail->addAddress($email);
 
     // Define o assunto e o corpo da mensagem
     $mail->CharSet = 'UTF-8';

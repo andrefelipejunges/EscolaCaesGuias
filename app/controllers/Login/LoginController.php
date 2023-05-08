@@ -19,7 +19,8 @@ class LoginController {
 
         if ($authenticated) {
             // Inicia a sessão do usuário e redireciona para a página principal
-            $_SESSION["usuario_logado"] = $login;  
+            $_SESSION["id_usuario_logado"] = $user->ObterIdUsuario(); 
+
             header('Location:'.URL_BASE.'app/views/Esqueleto/index.php');
         } else {
             // Exibe uma mensagem de erro na página de login
@@ -38,9 +39,6 @@ class LoginController {
      public function processRequest($actionName) {
         // Chama a ação correspondente e exibe o resultado
         switch ($actionName) {
-            case "showLoginForm":
-                $this->showLoginForm();
-                break;
             case "autenticar":
                 $this->autenticar();
                 break;

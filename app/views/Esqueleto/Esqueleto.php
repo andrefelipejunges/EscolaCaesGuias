@@ -30,13 +30,13 @@ include_once "../../../Config.php";
           <li><a href ="<?php echo URL_BASE.'app/views/Esqueleto/index.php';?>"> Home</a></li>
 
           <?php session_start()?>
-          <?php if(!isset($_SESSION["usuario_logado"])) { ?>
+          <?php if(!isset($_SESSION["id_usuario_logado"])) { ?>
 
             <li><a href ="<?php echo URL_BASE.'app/views/Login/LoginView.php';?>"> Login</a></li>
           <?php } ?>
         
           
-          <?php if(isset($_SESSION["usuario_logado"])) { ?>
+          <?php if(isset($_SESSION["id_usuario_logado"])) { ?>
            
             <li class="dropdown">
             <a href="#" class="dropdown-btn">Cadastros</a>
@@ -58,7 +58,7 @@ include_once "../../../Config.php";
             <div class="dropdown-content">
               <a href="<?php echo URL_BASE.'app/views/Tutores/Tutores.php';?>">Tutores</a>
               <a href="<?php echo URL_BASE.'app/views/Caes/Caes.php';?>">Cães</a>
-              <a href="<?php echo URL_BASE.'app/views/Usuarios/Usuarios.php';?>">Usuários</a>
+              <a href="<?php echo URL_BASE.'app/views/Usuarios/UsuariosListView.php';?>">Usuários</a>
             </div>
 
             <li><a href ="<?php echo URL_BASE.'app/routes/routes.php?action=logout';?>"> Sair</a></li>

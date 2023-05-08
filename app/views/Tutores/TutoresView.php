@@ -12,40 +12,42 @@ if(isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dados</title>
+    <title>Cadastro de Tutor</title>
     <body>  
-
-        <form method="post" action ="<?php echo URL_BASE.'app/routes/routes.php?action=cadastrar';?>">
+        <form method="post" action ="<?php echo URL_BASE.'app/routes/routes.php?action=cadastrarTutor';?>">
             <div class="container-cadastro"> 
-                <h1 class="h3 mb-3 font-weight-normal"><b>Dados</b></h1>
-                <div class="col">
-                    <label>Nome</label>
-                    <input name="nome" class="form-control" type="text" placeholder="Nome..." 
-                    required>
+                 <h1 class="h3 mb-3 font-weight-normal"><b>Dados</b></h1>
+                 <br>
+            <div class="row"> 
+                <div class="col-md-5">
+                   <b> <label for="login">Nome:</label></b>
+                    <input id="nome" name="nome" class="form-control" type="text" placeholder="Nome..." required>
                 </div>
-                <div class="col">
-                    <label>CPF</label>
-                    <input name="cpf" class="form-control" type="text" placeholder="CPF..." 
-                    required>
+                <div class="col-md-3">
+                   <b> <label for="senha">CPF:</label> </b>
+                    <input id="cpf" name="cpf" class="form-control" type="text" placeholder="CPF..." required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Por favor, insira um CPF válido no formato 000.000.000-00" maxlength="14">
                 </div>
-                <div class="col">
-                    <label>Nascimento (dd/mm/yyyy)</label>
-                    <input name="nascimento" class="form-control" type="text" placeholder="Nascimento..." 
-                    required>
                 </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <b><label for="nascimento">Data Nascimento:</label></b>
+                        <input id="nascimento" name="nascimento" class="form-control" type="date" placeholder="Data nascimento.." required >
+                    </div>
+                </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Salvar</button>
 
-                <!-- login 
-                <label for="login" class="sr-only"></label>
-                <input type="text" name="login" class="form-control" value="" placeholder="Login" required>
-                
-                <label for="senha" class="sr-only">Senha</label>
-                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+           <?php if (isset($_SESSION["MsgSucessoTutor"])) { ?>
+            <div class="alert alert-success" role="alert"><?php echo $_SESSION["MsgSucessoTutor"]; ?></div>
+            <?php } ?>
 
-                <a href="http://localhost/EscolaCaesGuias/app/views/EsqueciSenha/EsqueciSenhaView.php"> Esqueci minha senha</a>
-                -->
-                <button class="btn btn-lg btn-primary btn-block" type="submit"  name="submit">Cadastrar</button>
+            <?php if (isset($_SESSION["MsgErroTutor"])) { ?>
+            <div class="alert alert-danger" role="alert"><?php echo $_SESSION["MsgErroTutor"]; ?></div>
+            <?php } ?>
 
-            </div>
+            <?php unset($_SESSION['MsgSucessoTutor']); ?>
+            <?php unset($_SESSION['MsgErroTutor']); ?>
+
+        </div>
         </form>
     </body>
-    </html>
+</html>

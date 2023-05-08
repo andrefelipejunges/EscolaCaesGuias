@@ -30,7 +30,53 @@ class UsuariosModel{
     }
 
     public function incluir(){
-        return $this->setUsuario($this->getLogin(),$this->getSenha(),$this->getEmail());
+        session_start();
+        $conn = new Conexao();
+        $conn = $conn->conectar();  
+
+        if ($this->LoginJaExiste()) {
+            $_SESSION["MsgLoginJaCadastrado"] = "Login já cadastrado";
+            
+        }
+        else
+            if ($this->EmailJaExiste()) {
+                $_SESSION["MsgEmailJaCadastrado"] = "Email já cadastrado";
+        }
+        else
+        {
+            // Insere o novo registro
+            $stmt = $conn->prepare("INSERT INTO usuarios (`LOGIN`, `SENHA`, `EMAIL`) VALUES (?,?,?)");
+            try {
+                if($stmt->execute([$this->getLogin(), $this->getSenha(), $this->getEmail()])) {
+                    return true;
+                }
+            } catch(PDOException $e) {
+                // Exibe uma mensagem de erro mais descritiva para o usuário
+                $_SESSION["MsgErroUsuario"] = "Ocorreu algum erro ao cadastrar o usuário";
+            }
+        }
+
+        return false;
+    }
+
+    public function LoginJaExiste() {
+        $conn = new Conexao();
+        $conn = $conn->conectar();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE LOGIN = ?");
+        $stmt->execute([$this->getLogin()]);
+        $result = $stmt->fetchColumn();
+        return $result > 0;
+    }
+
+    public function EmailJaExiste() {
+        $conn = new Conexao();
+        $conn = $conn->conectar();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE EMAIL = ?");
+        $stmt->execute([$this->getEmail()]);
+        $result = $stmt->fetchColumn();
+        return $result > 0;
     }
 
     public function consultar(){
@@ -40,19 +86,5 @@ class UsuariosModel{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
-    public function setUsuario($login,$senha,$email){
-        $conn = new Conexao();
-        $conn = $conn->conectar();        
-
-        $stmt = $conn->prepare("INSERT INTO usuarios (`LOGIN`, `SENHA`, `EMAIL`) VALUES (?,?,?)");
-
-        if( $stmt->execute([$login, $senha, $email]) == TRUE){
-            return true;
-        }else{
-            return false;
-        }
-    }    
 }
 ?>
