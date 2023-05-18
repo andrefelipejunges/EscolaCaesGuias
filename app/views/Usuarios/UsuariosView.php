@@ -35,16 +35,16 @@ if ($usuario != null) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cadastro de usuário</title>
+    <title>Dados do Usuário</title>
     <body>  
         <form method="post" action ="<?php echo URL_BASE.'app/routes/routes.php?action=SalvarUsuario';?>">
             <div class="container-cadastro"> 
-                 <h1 class="h3 mb-3 font-weight-normal"><b>Dados</b></h1>
+                 <h1 class="h3 mb-3 font-weight-normal"><b>Dados do Usuário</b></h1>
                  <br>
             <div class="row"> 
                 <div class="col-md-4">
                    <b> <label for="login">Login:</label></b>
-                    <input id="login" name="login" class="form-control" type="text" placeholder="Login..." value="<?php echo $login; ?>" required disabled>
+                    <input id="login" name="login" class="form-control" type="text" placeholder="Login..." value="<?php echo $login; ?>" required readonly>
                 </div>
                 <div class="col-md-4">
                    <b> <label for="senha">Senha:</label> </b>
