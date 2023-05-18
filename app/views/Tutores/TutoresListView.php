@@ -1,17 +1,44 @@
 <?php
+
 include_once "../../../Config.php";
 include DIR_PATH.'app/views/Esqueleto/Esqueleto.php';
 
-// Cria uma instância do controlador de usuários
-require_once DIR_PATH.'/app/controllers/Usuarios/UsuariosController.php';
-$usuariosController = new UsuariosController();
+if(isset($_POST['submit'])) {
+    require_once DIR_PATH.'app/routes/Routes.php';
+}
 
-// Define a quantidade de registros por página
+// Cria uma instância do controlador de Tutores
+require_once DIR_PATH.'/app/controllers/Tutores/TutoresController.php';
+$tutoresController = new TutoresController();
+
+// Recupera o tutor logado
+$tutor = $tutoresController->processRequest("consultarTutorLogado");
+
+// Verifica se o objeto $tutor não é nulo
+if ($tutor != null) {
+    // Define as variáveis para preencher os campos da tela
+    $nome = $tutor->getNome();
+    $cpf = $tutor->getCpf();
+    $nascimento = date('Y-m-d', strtotime($tutor->getNascimento()));
+
+    //formatar CPF
+    $cpf = substr_replace($cpf, ".", 3, 0);
+    $cpf = substr_replace($cpf, ".", 7, 0);
+    $cpf = substr_replace($cpf, "-", 11, 0);
+
+} else {
+    // Define as variáveis como vazias caso o objeto $tutor seja nulo
+    $nome = "";
+    $cpf = "";
+    $nascimento = "";
+} 
+
+// Recupera todos os usuários
+$tutores = $tutoresController->processRequest("consultarTutor");
+
 $registrosPorPagina = 10;
-
-$usuarios = $usuariosController->processRequest("consultarUsuario");
 // Calcula o número total de páginas
-$totalRegistros = count($usuarios);
+$totalRegistros = count($tutores);
 $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
 
 // Verifica se a página atual está definida na URL, caso contrário, define como página 1
@@ -23,15 +50,13 @@ if (!isset($_GET['pagina'])) {
 $paginaAtual = $_GET['pagina'];
 $registroInicial = ($paginaAtual - 1) * $registrosPorPagina;
 $registroFinal = $registroInicial + $registrosPorPagina;
-
-// Recupera apenas os registros da página atual
-$usuarios = array_slice($usuarios, $registroInicial, $registrosPorPagina);
+$tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Consulta de usuário</title>
+    <title>Consulta de Tutores</title>
     <style>
         table {
             border-collapse: collapse;
@@ -106,16 +131,18 @@ $usuarios = array_slice($usuarios, $registroInicial, $registrosPorPagina);
 </head>
 <body>
 <div class="container-cadastro">
-    <h1>Consulta de Usuários</h1>
+    <h1>Consulta de Tutores</h1>
     <table>
         <tr>
-            <th style="background-color: #2F4F4F; color: white;" >Login</th>
-            <th style="background-color: #2F4F4F; color: white;">E-mail</th>
+            <th style="background-color: #2F4F4F; color: white;" >Nome</th>
+            <th style="background-color: #2F4F4F; color: white;">CPF</th>            
+            <th style="background-color: #2F4F4F; color: white;">Data Nascimento</th>
         </tr>
-        <?php foreach ($usuarios as $usuario): ?>
+        <?php foreach ($tutores as $tutor): ?>
             <tr>
-                <td><?php echo $usuario['LOGIN'] ?></td>
-                <td><?php echo $usuario['EMAIL'] ?></td>
+                <td><?php echo $tutor['NOME'] ?></td>
+                <td><?php echo $tutor['CPF'] ?></td>
+                <td><?php echo $tutor['DATA_NASCIMENTO'] ?></td>
             </tr>
         <?php endforeach; ?>
     </table>

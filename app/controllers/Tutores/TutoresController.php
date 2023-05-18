@@ -56,6 +56,13 @@ class TutoresController {
         return $this->tutor;
     }
 
+    public function consultar() {
+        // Chama a função "consultar" do modelo de usuários
+        $resultado = $this->tutor->consultar();
+        // Retorna o resultado como um array de objetos
+        return $resultado;
+    }
+
     public function processRequest($actionName) {
         // Chama a ação correspondente e exibe o resultado
         switch ($actionName) {
@@ -64,6 +71,9 @@ class TutoresController {
                 break;
             case "consultarTutorLogado":
                 return $this->consultarTutorLogado();
+                break;
+            case "consultarTutor":
+                return $this->consultar();
                 break;
             default:
             http_response_code(404);

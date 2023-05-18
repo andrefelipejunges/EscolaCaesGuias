@@ -88,7 +88,14 @@ class TutoresModel{
         $stmt = $conn->prepare("SELECT * FROM tutores where USUARIO = ?");
         $stmt->execute([$_SESSION["id_usuario_logado"]]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
+    public function consultar(){
+        $conn = new Conexao();
+        $conn = $conn->conectar();        
+        $stmt = $conn->prepare("SELECT * FROM tutores");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>

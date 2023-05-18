@@ -31,6 +31,10 @@ $routes = [
     "action=salvarTutor" => [
         "controller" => "TutoresController",
         "action" => "salvarTutor"
+    ],
+    "action=consultarTutor" => [
+        "controller" => "TutoresController",
+        "action" => "consultar"
     ]
 ];
 

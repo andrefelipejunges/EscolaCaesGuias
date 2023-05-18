@@ -56,7 +56,7 @@ include_once "../../../Config.php";
             <a href="#" class="dropdown-btn">Consulta</a>
             <!-- Cria o conteúdo do dropdown -->
             <div class="dropdown-content">
-              <a href="<?php echo URL_BASE.'app/views/Tutores/Tutores.php';?>">Tutores</a>
+              <a href="<?php echo URL_BASE.'app/views/Tutores/TutoresListView.php';?>">Tutores</a>
               <a href="<?php echo URL_BASE.'app/views/Caes/Caes.php';?>">Cães</a>
               <a href="<?php echo URL_BASE.'app/views/Usuarios/UsuariosListView.php';?>">Usuários</a>
             </div>
