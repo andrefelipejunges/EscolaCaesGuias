@@ -19,12 +19,17 @@ if ($tutor != null) {
     // Define as variáveis para preencher os campos da tela
     $nome = $tutor->getNome();
     $cpf = $tutor->getCpf();
-    $nascimento = date('Y-m-d', strtotime($tutor->getNascimento()));
+    
+    if ($tutor->getNascimento() <> NULL)
+      $nascimento = date('Y-m-d', strtotime($tutor->getNascimento()));
 
-    //formatar CPF
-    $cpf = substr_replace($cpf, ".", 3, 0);
-    $cpf = substr_replace($cpf, ".", 7, 0);
-    $cpf = substr_replace($cpf, "-", 11, 0);
+    if ($cpf <> '')
+    {
+      //formatar CPF
+      $cpf = substr_replace($cpf, ".", 3, 0);
+      $cpf = substr_replace($cpf, ".", 7, 0);
+      $cpf = substr_replace($cpf, "-", 11, 0);
+    }
 
 } else {
     // Define as variáveis como vazias caso o objeto $tutor seja nulo

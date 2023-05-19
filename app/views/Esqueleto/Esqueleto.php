@@ -17,7 +17,7 @@ include_once "../../../Config.php";
 
 <body>
   <header>
-    <nav class="navbar fixed-top navbar-light bg-light" style ="background-color:#F8F8FF;">
+    <nav class="navbar fixed-top navbar-light bg-light bg-white">
         <a class="navbar-brand" href="<?php echo URL_BASE.'app/views/Esqueleto/index.php';?>"><img src="<?php echo URL_BASE.'assets/img/Logo_Escola_Caes_Guias_Keller.png';?>" class ="logo"> </a>
     </nav>
   </header>
