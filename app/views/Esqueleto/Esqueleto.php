@@ -33,11 +33,8 @@ include_once "../../../Config.php";
           <?php if(!isset($_SESSION["id_usuario_logado"])) { ?>
 
             <li><a href ="<?php echo URL_BASE.'app/views/Login/LoginView.php';?>"> Login</a></li>
-          <?php } ?>
-        
-          
-          <?php if(isset($_SESSION["id_usuario_logado"])) { ?>
-           
+          <?php } else { ?>
+             
             <li class="dropdown">
             <a href="#" class="dropdown-btn">Cadastros</a>
             <!-- Cria o conteúdo do dropdown -->
