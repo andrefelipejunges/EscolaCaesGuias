@@ -54,34 +54,6 @@ $usuarios = array_slice($usuarios, $registroInicial, $registrosPorPagina);
             background-color: #f2f2f2;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .container h1 {
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 30px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #3e8e41;
-        }
-
         .pagination {
             display: flex;
             justify-content: center;

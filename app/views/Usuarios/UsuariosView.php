@@ -30,8 +30,6 @@ if ($usuario != null) {
 
 ?>
 
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
