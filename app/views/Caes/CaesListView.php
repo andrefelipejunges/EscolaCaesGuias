@@ -7,16 +7,16 @@ if(isset($_POST['submit'])) {
     require_once DIR_PATH.'app/routes/Routes.php';
 }
 
-// Cria uma instância do controlador de Tutores
-require_once DIR_PATH.'/app/controllers/Tutores/TutoresController.php';
-$tutoresController = new TutoresController();
+// Cria uma instância do controlador de Cães
+require_once DIR_PATH.'/app/controllers/Caes/CaesController.php';
+$caesController = new CaesController();
 
-// Recupera todos os usuários
-$tutores = $tutoresController->processRequest("consultarTutor");
+// Recupera todos os cães
+$caes = $caesController->processRequest("consultarCaes");
 
 $registrosPorPagina = 10;
 // Calcula o número total de páginas
-$totalRegistros = count($tutores);
+$totalRegistros = count($caes);
 $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
 
 // Verifica se a página atual está definida na URL, caso contrário, define como página 1
@@ -28,13 +28,13 @@ if (!isset($_GET['pagina'])) {
 $paginaAtual = $_GET['pagina'];
 $registroInicial = ($paginaAtual - 1) * $registrosPorPagina;
 $registroFinal = $registroInicial + $registrosPorPagina;
-$tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
+$caes = array_slice($caes, $registroInicial, $registrosPorPagina);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Consulta de Tutores</title>
+    <title>Consulta de Cães</title>
     <style>
         table {
             border-collapse: collapse;
@@ -109,18 +109,28 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
 </head>
 <body>
 <div class="container-cadastro">
-    <h1 class="h3 mb-3 font-weight-normal"><b>Consulta de Tutores</b></h1>
+    <h1 class="h3 mb-3 font-weight-normal"><b>Consulta de Cães</b></h1>
     <table>
         <tr>
             <th style="background-color: #2F4F4F; color: white;" >Nome</th>
-            <th style="background-color: #2F4F4F; color: white;">CPF</th>            
-            <th style="background-color: #2F4F4F; color: white;">Data Nascimento</th>
+            <th style="background-color: #2F4F4F; color: white;">Raça</th>            
+            <th style="background-color: #2F4F4F; color: white;">Idade</th>
+            <th style="background-color: #2F4F4F; color: white;">Peso</th>
+            <th style="background-color: #2F4F4F; color: white;">Nome Pai</th>
+            <th style="background-color: #2F4F4F; color: white;">Nome Mãe</th>
+            <th style="background-color: #2F4F4F; color: white;">Data cadastro</th>
+            <th style="background-color: #2F4F4F; color: white;">Sexo</th>
         </tr>
-        <?php foreach ($tutores as $tutor): ?>
+        <?php foreach ($caes as $cao): ?>
             <tr>
-                <td><?php echo $tutor['NOME'] ?></td>
-                <td><?php echo $tutor['CPF'] ?></td>
-                <td><?php echo $tutor['DATA_NASCIMENTO'] ?></td>
+                <td><?php echo $cao['NOME'] ?></td>
+                <td><?php echo $cao['RAÇA'] ?></td>
+                <td><?php echo $cao['IDADE'] ?></td>
+                <td><?php echo $cao['PESO'] ?></td>
+                <td><?php echo $cao['NOME_PAI'] ?></td>
+                <td><?php echo $cao['NOME_MAE'] ?></td>
+                <td><?php echo $cao['DATA_CADASTRO'] ?></td>
+                <td><?php echo $cao['SEXO'] ?></td>
             </tr>
         <?php endforeach; ?>
     </table>

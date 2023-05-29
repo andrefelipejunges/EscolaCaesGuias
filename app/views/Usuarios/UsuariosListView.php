@@ -78,7 +78,7 @@ $usuarios = array_slice($usuarios, $registroInicial, $registrosPorPagina);
 </head>
 <body>
 <div class="container-cadastro">
-    <h1>Consulta de Usuários</h1>
+    <h1 class="h3 mb-3 font-weight-normal"><b>Consulta de Usuários</b></h1>
     <table>
         <tr>
             <th style="background-color: #2F4F4F; color: white;" >Login</th>

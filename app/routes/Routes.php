@@ -5,6 +5,7 @@ require_once DIR_PATH.'app/controllers/Login/LoginController.php';
 require_once DIR_PATH.'app/controllers/EsqueciSenha/EsqueciSenhaController.php';
 require_once DIR_PATH.'app/controllers/Usuarios/UsuariosController.php';
 require_once DIR_PATH.'app/controllers/Tutores/TutoresController.php';
+require_once DIR_PATH.'app/controllers/Caes/CaesController.php';
 
 // Define as rotas para cada ação do controlador de Login
 $routes = [
@@ -35,6 +36,10 @@ $routes = [
     "action=consultarTutor" => [
         "controller" => "TutoresController",
         "action" => "consultar"
+    ],
+    "action=salvarCao" => [
+        "controller" => "CaesController",
+        "action" => "salvarCao"
     ]
 ];
 

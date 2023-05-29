@@ -4,7 +4,6 @@ include_once "../../../Config.php";
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +53,7 @@ include_once "../../../Config.php";
             <!-- Cria o conteúdo do dropdown -->
             <div class="dropdown-content">
               <a href="<?php echo URL_BASE.'app/views/Tutores/TutoresListView.php';?>">Tutores</a>
-              <a href="<?php echo URL_BASE.'app/views/Caes/Caes.php';?>">Cães</a>
+              <a href="<?php echo URL_BASE.'app/views/Caes/CaesListView.php';?>">Cães</a>
               <a href="<?php echo URL_BASE.'app/views/Usuarios/UsuariosListView.php';?>">Usuários</a>
             </div>
 
@@ -64,6 +63,7 @@ include_once "../../../Config.php";
         
           </li>
       </ul>
+    </nav>
     </div>
   </form>
 </body>
