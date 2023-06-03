@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Abr-2023 às 03:27
+-- Tempo de geração: 03-Jun-2023 às 19:08
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -32,11 +32,14 @@ USE `caes`;
 CREATE TABLE `caes` (
   `ID` int(10) NOT NULL,
   `NOME` varchar(30) NOT NULL,
-  `RAÇA` varchar(30) NOT NULL,
+  `RACA` varchar(30) NOT NULL,
   `IDADE` int(3) NOT NULL,
   `PESO` int(3) NOT NULL,
-  `DATA_CADASTRO` date NOT NULL DEFAULT current_timestamp(),
-  `SEXO` varchar(1) NOT NULL
+  `NOME_PAI` varchar(30) NOT NULL,
+  `NOME_MAE` varchar(30) NOT NULL,
+  `DATA_CADASTRO` date NOT NULL,
+  `SEXO` varchar(1) NOT NULL,
+  `FOTO` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Cães';
 
 -- --------------------------------------------------------
@@ -55,7 +58,7 @@ CREATE TABLE `contatos` (
   `bairro` varchar(32) DEFAULT NULL,
   `cidade` varchar(32) DEFAULT NULL,
   `uf` varchar(2) DEFAULT NULL,
-  `data_cadastro` timestamp NULL DEFAULT current_timestamp()
+  `data_cadastro` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -310,6 +313,32 @@ CREATE TABLE `tutores` (
   `DATA_NASCIMENTO` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tutores dos cães';
 
+--
+-- Extraindo dados da tabela `tutores`
+--
+
+INSERT INTO `tutores` (`ID`, `NOME`, `USUARIO`, `CPF`, `DATA_NASCIMENTO`) VALUES
+(1, 'Lucas Santos', 1, '11122233344', '1990-01-01'),
+(2, 'Gabriela Silva', 2, '55566677788', '1985-02-15'),
+(3, 'Juliana Oliveira', 3, '99988877766', '1995-06-30'),
+(4, 'Pedro Henrique', 4, '44455566677', '1992-11-11'),
+(5, 'Ana Paula Vieira', 5, '33322211100', '1980-08-24'),
+(6, 'Thiago Alves', 6, '22233344455', '1991-05-06'),
+(7, 'Carla Souza', 7, '66655544433', '1982-04-19'),
+(8, 'Luciana Pereira', 8, '77788899900', '1994-12-12'),
+(9, 'Ricardo Santos', 9, '88899900011', '1987-03-03'),
+(10, 'Patrícia Lima', 10, '77766655544', '1998-07-28'),
+(11, 'Fernando Oliveira', 11, '66677788899', '1981-02-18'),
+(12, 'Camila Silva', 12, '22211133344', '1993-09-15'),
+(13, 'Rodrigo Souza', 13, '55544433322', '1996-10-20'),
+(14, 'Mariana Costa', 14, '44433322211', '1984-12-31'),
+(15, 'Lucas Barbosa', 15, '99988877766', '1989-06-25'),
+(16, 'Aline Pereira', 16, '33344455566', '1997-01-09'),
+(17, 'Bruno Oliveira', 17, '11122233344', '1983-07-13'),
+(18, 'Mônica Santos', 18, '88899900011', '1995-04-22'),
+(19, 'Renato Almeida', 19, '55566677788', '1990-11-27'),
+(20, 'Luiza Souza', 20, '22233344455', '1988-03-08');
+
 -- --------------------------------------------------------
 
 --
@@ -331,21 +360,87 @@ CREATE TABLE `usuarios` (
   `ID` int(10) NOT NULL COMMENT 'Identificador do usuário.',
   `LOGIN` varchar(20) NOT NULL COMMENT 'Login para entrar no sistema.',
   `SENHA` varchar(20) NOT NULL COMMENT 'Senha do usuário.',
-  `EMAIL` varchar(70) NOT NULL COMMENT 'E-mail usado na redefinição de senha.'
+  `EMAIL` varchar(70) NOT NULL COMMENT 'E-mail usado na redefinição de senha.',
+  `FOTO` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Usuários do sistema';
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID`, `LOGIN`, `SENHA`, `EMAIL`) VALUES
-(1, 'andre2', '123456', 'andre2@gmail.com'),
-(3, 'andre21', '123456', 'andre2@gmail.com'),
-(5, 'andre22', '123456', 'andre2@gmail.com'),
-(7, 'andre30', '123456', 'andre2@gmail.com'),
-(8, 'andre31', '123456', 'andre2@gmail.com'),
-(9, 'andre1', '123456', 'ANDRE@GMAIL.COM'),
-(10, 'andre', 'andre', 'andre@1');
+INSERT INTO `usuarios` (`ID`, `LOGIN`, `SENHA`, `EMAIL`, `FOTO`) VALUES
+(1, 'andre', 'andre', 'user1@teste.com', ''),
+(2, 'user2', 'senha2', 'user2@teste.com', ''),
+(3, 'user3', 'senha3', 'user3@teste.com', ''),
+(4, 'user4', 'senha4', 'user4@teste.com', ''),
+(5, 'user5', 'senha5', 'user5@teste.com', ''),
+(6, 'user6', 'senha6', 'user6@teste.com', ''),
+(7, 'user7', 'senha7', 'user7@teste.com', ''),
+(8, 'user8', 'senha8', 'user8@teste.com', ''),
+(9, 'user9', 'senha9', 'user9@teste.com', ''),
+(10, 'user10', 'senha10', 'user10@teste.com', ''),
+(11, 'user11', 'senha11', 'user11@teste.com', ''),
+(12, 'user12', 'senha12', 'user12@teste.com', ''),
+(13, 'user13', 'senha13', 'user13@teste.com', ''),
+(14, 'user14', 'senha14', 'user14@teste.com', ''),
+(15, 'user15', 'senha15', 'user15@teste.com', ''),
+(16, 'user16', 'senha16', 'user16@teste.com', ''),
+(17, 'user17', 'senha17', 'user17@teste.com', ''),
+(18, 'user18', 'senha18', 'user18@teste.com', ''),
+(19, 'user19', 'senha19', 'user19@teste.com', ''),
+(20, 'user20', 'senha20', 'user20@teste.com', ''),
+(21, 'user21', 'senha21', 'user21@teste.com', ''),
+(22, 'user22', 'senha22', 'user22@teste.com', ''),
+(23, 'user23', 'senha23', 'user23@teste.com', ''),
+(24, 'user24', 'senha24', 'user24@teste.com', ''),
+(25, 'user25', 'senha25', 'user25@teste.com', ''),
+(26, 'user26', 'senha26', 'user26@teste.com', ''),
+(27, 'user27', 'senha27', 'user27@teste.com', ''),
+(28, 'user28', 'senha28', 'user28@teste.com', ''),
+(29, 'user29', 'senha29', 'user29@teste.com', ''),
+(30, 'user30', 'senha30', 'user30@teste.com', ''),
+(31, 'user31', 'senha31', 'user31@teste.com', ''),
+(32, 'user32', 'senha32', 'user32@teste.com', ''),
+(33, 'user33', 'senha33', 'user33@teste.com', ''),
+(34, 'user34', 'senha34', 'user34@teste.com', ''),
+(35, 'user35', 'senha35', 'user35@teste.com', ''),
+(36, 'user36', 'senha36', 'user36@teste.com', ''),
+(37, 'user37', 'senha37', 'user37@teste.com', ''),
+(38, 'mgray38', '123456', 'mgray38@example.com', ''),
+(39, 'dramos39', '123456', 'dramos39@example.com', ''),
+(40, 'jgonzales40', '123456', 'jgonzales40@example.com', ''),
+(41, 'lfernandez41', '123456', 'lfernandez41@example.com', ''),
+(42, 'mramirez42', '123456', 'mramirez42@example.com', ''),
+(43, 'jwalker43', '123456', 'jwalker43@example.com', ''),
+(44, 'sandersen44', '123456', 'sandersen44@example.com', ''),
+(45, 'cdavis45', '123456', 'cdavis45@example.com', ''),
+(46, 'lmurphy46', '123456', 'lmurphy46@example.com', ''),
+(47, 'mwood47', '123456', 'mwood47@example.com', ''),
+(48, 'tphillips48', '123456', 'tphillips48@example.com', ''),
+(49, 'brogers49', '123456', 'brogers49@example.com', ''),
+(50, 'awatson50', '123456', 'awatson50@example.com', ''),
+(51, 'lstewart51', '123456', 'lstewart51@example.com', ''),
+(52, 'jprice52', '123456', 'jprice52@example.com', ''),
+(53, 'pwatkins53', '123456', 'pwatkins53@example.com', ''),
+(54, 'vwebb54', '123456', 'vwebb54@example.com', ''),
+(55, 'kfisher55', '123456', 'kfisher55@example.com', ''),
+(56, 'jburton56', '123456', 'jburton56@example.com', ''),
+(57, 'eburns57', '123456', 'eburns57@example.com', ''),
+(58, 'cdixon58', '123456', 'cdixon58@example.com', ''),
+(59, 'mdaniel59', '123456', 'mdaniel59@example.com', ''),
+(60, 'sbryant60', '123456', 'sbryant60@example.com', ''),
+(61, 'mwatkins61', '123456', 'mwatkins61@example.com', ''),
+(62, 'zfranklin62', '123456', 'zfranklin62@example.com', ''),
+(63, 'pwatson63', '123456', 'pwatson63@example.com', ''),
+(64, 'nprice64', '123456', 'nprice64@example.com', ''),
+(65, 'scoleman65', '123456', 'scoleman65@example.com', ''),
+(66, 'jwatkins66', '123456', 'jwatkins66@example.com', ''),
+(67, 'jburns67', '123456', 'jburns67@example.com', ''),
+(68, 'rcook68', '123456', 'rcook68@example.com', ''),
+(69, 'pburton69', '123456', 'pburton69@example.com', ''),
+(70, 'jcampbell70', '123456', 'jcampbell70@example.com', ''),
+(71, 'bgarza71', '123456', 'bgarza71@example.com', ''),
+(72, 'kmurray72', '123456', 'kmurray72@example.com', '');
 
 --
 -- Índices para tabelas despejadas
@@ -396,27 +491,34 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de tabela `caes`
+--
+ALTER TABLE `caes`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `contatos`
 --
 ALTER TABLE `contatos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
 
 --
+-- AUTO_INCREMENT de tabela `grupos`
+--
+ALTER TABLE `grupos`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tutores`
+--
+ALTER TABLE `tutores`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Identificador do usuário.', AUTO_INCREMENT=11;
-
---
--- Restrições para despejos de tabelas
---
-
---
--- Limitadores para a tabela `tutores_caes`
---
-ALTER TABLE `tutores_caes`
-  ADD CONSTRAINT `tutores_caes_ibfk_1` FOREIGN KEY (`ID_TUTOR`) REFERENCES `tutores` (`ID`),
-  ADD CONSTRAINT `tutores_caes_ibfk_2` FOREIGN KEY (`ID_CAO`) REFERENCES `caes` (`ID`);
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Identificador do usuário.', AUTO_INCREMENT=73;
 
 
 --
