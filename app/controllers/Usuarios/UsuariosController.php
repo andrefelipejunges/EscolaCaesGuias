@@ -10,7 +10,8 @@ class UsuariosController {
 
     private function incluirEditar(){
         session_start();
-        $this->usuario->setId($_SESSION["id_usuario_logado"]);
+
+        $this->usuario->setId($_POST['id']);
         $this->usuario->setLogin($_POST['login']);
         $this->usuario->setSenha($_POST['senha']);
         $this->usuario->setEmail($_POST['email']);   
@@ -22,7 +23,8 @@ class UsuariosController {
         else
             {$this->incluir();}
 
-        header('Location:'.URL_BASE.'app/views/Usuarios/UsuariosView.php');
+        $idUsuario = $_POST['id'];
+        header('Location: ' . URL_BASE . 'app/views/Usuarios/UsuariosView.php?idUsuario=' . $idUsuario);
     }
 
     private function incluir(){
@@ -41,6 +43,14 @@ class UsuariosController {
         }
     }
 
+    private function excluir(){
+        $result = $this->usuario->excluir();
+
+        if($result){
+            $_SESSION["MsgSucessoUsuario"] = "Usuário excluído com sucesso";
+        }
+    }
+
     // Função que retorna todos os usuários do banco de dados
     public function consultar() {
         // Chama a função "consultar" do modelo de usuários
@@ -49,9 +59,9 @@ class UsuariosController {
         return $resultado;
     }
 
-    public function consultarUsuarioLogado() {
+    public function ConsultarUsuario() {
         // Chama a função "consultar" do modelo de Usuarios
-        $resultado = $this->usuario->ConsultarUsuarioLogado();
+        $resultado = $this->usuario->ConsultarUsuario();
 
         if ($resultado) {
             $this->usuario->setId($resultado['ID']);
@@ -70,11 +80,14 @@ class UsuariosController {
             case "salvarUsuario":
                 $this->incluirEditar();
                 break;
-            case "consultarUsuario":
+            case "ConsultarUsuarios":
                 return $this->consultar();
                 break;         
-            case "consultarUsuarioLogado":
-                 return $this->consultarUsuarioLogado();
+            case "ConsultarUsuario":
+                 return $this->ConsultarUsuario();
+                break;
+            case "ExcluirUsuario":
+                 return $this->excluir();
                 break;
             default:
             http_response_code(404);

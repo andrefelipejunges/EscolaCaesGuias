@@ -6,10 +6,19 @@ include DIR_PATH.'app/views/Esqueleto/Esqueleto.php';
 require_once DIR_PATH.'/app/controllers/Usuarios/UsuariosController.php';
 $usuariosController = new UsuariosController();
 
+if (isset($_GET['idExcluirUsuario'])) {
+    //die(var_dump($_GET['idExcluirUsuario']));
+    // Obtém o ID do usuário a ser excluído
+    $idUsuario = $_GET['idExcluirUsuario'];
+
+    // Processa a exclusão do usuário
+    $usuariosController->processRequest("ExcluirUsuario");
+}
+
 // Define a quantidade de registros por página
 $registrosPorPagina = 10;
 
-$usuarios = $usuariosController->processRequest("consultarUsuario");
+$usuarios = $usuariosController->processRequest("ConsultarUsuarios");
 // Calcula o número total de páginas
 $totalRegistros = count($usuarios);
 $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
@@ -74,6 +83,20 @@ $usuarios = array_slice($usuarios, $registroInicial, $registrosPorPagina);
             background-color: #4CAF50;
             color: white;
         }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        .btn-danger {
+            background-color: #FF4136;
+        }
     </style>
 </head>
 <body>
@@ -81,17 +104,22 @@ $usuarios = array_slice($usuarios, $registroInicial, $registrosPorPagina);
     <h1 class="h3 mb-3 font-weight-normal"><b>Consulta de Usuários</b></h1>
     <table>
         <tr>
-            <th style="background-color: #2F4F4F; color: white;" >Login</th>
+            <th style="background-color: #2F4F4F; color: white;">Login</th>
             <th style="background-color: #2F4F4F; color: white;">E-mail</th>
+            <th style="background-color: #2F4F4F; color: white;">Ações</th>
         </tr>
         <?php foreach ($usuarios as $usuario): ?>
             <tr>
                 <td><?php echo $usuario['LOGIN'] ?></td>
                 <td><?php echo $usuario['EMAIL'] ?></td>
+                <td>
+                    <a class="btn" href="UsuariosView.php?idUsuario=<?php echo $usuario['ID'] ?>">Alterar</a>
+                    <a class="btn btn-danger" href="?idExcluirUsuario=<?php echo $usuario['ID'] ?>">Excluir</a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>
-   
+
     <div class="pagination">
         <?php if ($paginaAtual > 1): ?>
             <a href="?pagina=<?php echo $paginaAtual - 1; ?>">Anterior</a>
@@ -105,9 +133,9 @@ $usuarios = array_slice($usuarios, $registroInicial, $registrosPorPagina);
         <?php endfor; ?>
         <?php if ($paginaAtual < $totalPaginas): ?>
             <a href="?pagina=<?php echo $paginaAtual + 1; ?>">Próxima</a>
-        <?php endif; ?>
-    </div>
-    
+<?php endif; ?>
+</div>
+
 </div>
 </body>
 </html>

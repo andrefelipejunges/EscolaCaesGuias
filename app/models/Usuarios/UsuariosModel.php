@@ -85,6 +85,24 @@ class UsuariosModel{
         return false;   
     }
 
+    public function excluir(){
+        //session_start();
+        $conn = new Conexao();
+        $conn = $conn->conectar();
+
+        // Atualiza o registro
+        $stmt = $conn->prepare("DELETE FROM usuarios WHERE ID = ?");
+        try {
+             if($stmt->execute([$_GET['idExcluirUsuario']])) {
+                return true;
+            }
+        } catch(PDOException $e) {
+            $_SESSION["MsgErroExcluirUsuario"] = "Ocorreu algum erro ao excluir o usuario";
+        }
+
+        return false;
+    }    
+
     public function LoginJaExiste() {
         $conn = new Conexao();
         $conn = $conn->conectar();
@@ -123,13 +141,20 @@ class UsuariosModel{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ConsultarUsuarioLogado(){
+    public function ConsultarUsuario(){
+        $param = 0;
         $conn = new Conexao();
         $conn = $conn->conectar();        
-        $stmt = $conn->prepare("SELECT * FROM usuarios where id = ?");
-        $stmt->execute([$_SESSION["id_usuario_logado"]]);
+        $stmt = $conn->prepare("SELECT * FROM usuarios where id = ?");        
+        if (isset($_GET['idUsuario'])) {
+            //die(var_dump($_GET['idUsuario']));
+            $param = $_GET['idUsuario'];
+        }else {
+            //die(var_dump($_SESSION["id_usuario_logado"]));
+            $param = $_SESSION["id_usuario_logado"];
+        }
+        $stmt->execute([$param]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
-
     }
 }
 ?>

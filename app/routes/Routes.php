@@ -25,7 +25,7 @@ $routes = [
         "controller" => "UsuariosController",
         "action" => "salvarUsuario"
     ],
-    "action=consultarUsuario" => [
+    "action=ConsultarUsuarios" => [
         "controller" => "UsuariosController",
         "action" => "consultar"
     ],
