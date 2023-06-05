@@ -11,6 +11,15 @@ if(isset($_POST['submit'])) {
 require_once DIR_PATH.'/app/controllers/Tutores/TutoresController.php';
 $tutoresController = new TutoresController();
 
+if (isset($_GET['idExcluirTutor'])) {
+    //die(var_dump($_GET['idExcluirTutor']));
+    // Obtém o ID do tutor a ser excluído
+    $idUsuario = $_GET['idExcluirTutor'];
+
+    // Processa a exclusão do tutor
+    $tutoresController->processRequest("ExcluirTutor");
+}
+
 // Recupera todos os usuários
 $tutores = $tutoresController->processRequest("consultarTutor");
 
@@ -40,12 +49,14 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
             border-collapse: collapse;
             width: 100%;
             text-align: left;
+            table-layout: fixed; /* Define a largura fixa para as células da tabela */
         }
 
         th, td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            word-wrap: break-word; /* Permite que o conteúdo longo seja quebrado em várias linhas */
         }
 
         th {
@@ -73,16 +84,25 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
             display: inline-block;
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 8px 16px;
+            border-radius: 4px;
             text-decoration: none;
-            margin-top: 30px;
-            font-size: 18px;
+            margin-top: 10px;
+            font-size: 14px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-edit {
+            background-color: #2196F3;
+        }
+
+        .btn-delete {
+            background-color: #F44336;
         }
 
         .btn:hover {
-            background-color: #3e8e41;
+            background-color: #555;
         }
 
         .pagination {
@@ -101,7 +121,7 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
             margin: 0 5px;
         }
 
-        .pagination a.active {
+                .pagination a.active {
             background-color: #4CAF50;
             color: white;
         }
@@ -112,19 +132,26 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
     <h1 class="h3 mb-3 font-weight-normal"><b>Consulta de Tutores</b></h1>
     <table>
         <tr>
-            <th style="background-color: #2F4F4F; color: white;" >Nome</th>
-            <th style="background-color: #2F4F4F; color: white;">CPF</th>            
+            <th style="background-color: #2F4F4F; color: white;">Nome</th>
+            <th style="background-color: #2F4F4F; color: white;">CPF</th>
             <th style="background-color: #2F4F4F; color: white;">Data Nascimento</th>
+            <th style="background-color: #2F4F4F; color: white;">Ações</th> <!-- Coluna para as ações -->
         </tr>
         <?php foreach ($tutores as $tutor): ?>
             <tr>
                 <td><?php echo $tutor['NOME'] ?></td>
                 <td><?php echo $tutor['CPF'] ?></td>
                 <td><?php echo $tutor['DATA_NASCIMENTO'] ?></td>
+                <td>
+                    <div class="btn-container">
+                        <a class="btn btn-edit" href="TutoresView.php?idTutor=<?php echo $tutor['ID'] ?>">Alterar</a>
+                        <a class="btn btn-delete" href="?idExcluirTutor=<?php echo $tutor['ID'] ?>">Excluir</a>
+                    </div>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>
-   
+
     <div class="pagination">
         <?php if ($paginaAtual > 1): ?>
             <a href="?pagina=<?php echo $paginaAtual - 1; ?>">Anterior</a>
@@ -140,7 +167,7 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
             <a href="?pagina=<?php echo $paginaAtual + 1; ?>">Próxima</a>
         <?php endif; ?>
     </div>
-    
+
 </div>
 </body>
 </html>

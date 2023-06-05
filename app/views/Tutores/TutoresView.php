@@ -12,11 +12,12 @@ require_once DIR_PATH.'/app/controllers/Tutores/TutoresController.php';
 $tutoresController = new TutoresController();
 
 // Recupera o tutor logado
-$tutor = $tutoresController->processRequest("consultarTutorLogado");
+$tutor = $tutoresController->processRequest("consultarTutor");
 
 // Verifica se o objeto $tutor não é nulo
 if ($tutor != null) {
     // Define as variáveis para preencher os campos da tela
+    $id = $tutor->getId();
     $nome = $tutor->getNome();
     $cpf = $tutor->getCpf();
     
@@ -33,6 +34,7 @@ if ($tutor != null) {
 
 } else {
     // Define as variáveis como vazias caso o objeto $tutor seja nulo
+    $id = "";
     $nome = "";
     $cpf = "";
     $nascimento = "";
@@ -64,6 +66,9 @@ if ($tutor != null) {
                         <b><label for="nascimento">Data Nascimento:</label></b>
                         <input id="nascimento" name="nascimento" class="form-control" type="date" placeholder="Data nascimento.." value="<?php echo $nascimento; ?>" required>
                     </div>
+                </div>
+                <div class="col-md-4">
+                    <input id="id" name="id" class="form-control" type="hidden" placeholder="ID..." value="<?php echo $id; ?>" required readonly>
                 </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Salvar</button>
 

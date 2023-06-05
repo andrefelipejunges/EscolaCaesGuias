@@ -114,7 +114,7 @@ $usuarios = array_slice($usuarios, $registroInicial, $registrosPorPagina);
                 <td><?php echo $usuario['EMAIL'] ?></td>
                 <td>
                     <a class="btn" href="UsuariosView.php?idUsuario=<?php echo $usuario['ID'] ?>">Alterar</a>
-                    <a class="btn btn-danger" href="?idExcluirUsuario=<?php echo $usuario['ID'] ?>">Excluir</a>
+                    <a class="btn btn-danger" href="?idExcluirUsuario=<?php echo $usuario['ID'] ?>">Excluir</a>                   
                 </td>
             </tr>
         <?php endforeach; ?>

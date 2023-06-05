@@ -13,7 +13,7 @@ class TutoresController {
         $this->tutor->setNome($_POST['nome']);
         $this->tutor->setCpf($_POST['cpf']);
         $this->tutor->setNascimento($_POST['nascimento']);
-        $this->tutor->setUsuario($_SESSION["id_usuario_logado"]);     
+        $this->tutor->setUsuario($_POST['usuario']);     
         $result = $this->tutor->TutorExiste();
 
         if($result >= 1){
@@ -22,7 +22,8 @@ class TutoresController {
         else
             {$this->incluir();}
 
-        header('Location:'.URL_BASE.'app/views/Tutores/TutoresView.php');
+        $idTutor = $_POST['id'];
+        header('Location: ' . URL_BASE . 'app/views/Tutores/TutoresView.php?idTutor=' . $idTutor);
     }
 
     private function incluir(){    
@@ -41,11 +42,20 @@ class TutoresController {
         }
     }
 
-    public function consultarTutorLogado() {
+    private function excluir(){
+        $result = $this->tutor->excluir();
+
+        if($result){
+            //$_SESSION["MsgSucessoTutor"] = "Tutor excluído com sucesso";
+        }
+    }
+
+    public function consultarTutor() {
         // Chama a função "consultar" do modelo de tutores
-        $resultado = $this->tutor->ConsultarTutorLogado();
+        $resultado = $this->tutor->ConsultarTutor();
 
         if ($resultado) {
+            $this->tutor->setId($resultado['ID']);
             $this->tutor->setNome($resultado['NOME']);
             $this->tutor->setCpf($resultado['CPF']);
             $this->tutor->setNascimento($resultado['DATA_NASCIMENTO']);
@@ -69,12 +79,15 @@ class TutoresController {
             case "salvarTutor":
                 $this->incluirEditar();
                 break;
-            case "consultarTutorLogado":
-                return $this->consultarTutorLogado();
+            case "consultarTutor":
+                return $this->consultarTutor();
                 break;
             case "consultarTutor":
                 return $this->consultar();
                 break;
+            case "ExcluirTutor":
+                 return $this->excluir();
+                break;                
             default:
             http_response_code(404);
             echo "Página não encontrada.";

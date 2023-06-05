@@ -11,6 +11,9 @@ class TutoresModel{
     private $nascimento;
 
     //Metodos Set
+    public function setId($id){
+        $this->id = $id;
+    }
     public function setNome($nome){
         $this->nome = $nome;
     }
@@ -24,6 +27,9 @@ class TutoresModel{
         $this->nascimento = $nascimento;
     }
     //Metodos Get
+    public function getId(){
+        return $this->id;
+    }    
     public function getNome(){
         return $this->nome;
     }
@@ -72,6 +78,24 @@ class TutoresModel{
         return false;   
     }
 
+    public function excluir(){
+        //session_start();
+        $conn = new Conexao();
+        $conn = $conn->conectar();
+
+        // Atualiza o registro
+        $stmt = $conn->prepare("DELETE FROM tutores WHERE ID = ?");
+        try {
+             if($stmt->execute([$_GET['idExcluirTutor']])) {
+                return true;
+            }
+        } catch(PDOException $e) {
+            $_SESSION["MsgErroExcluirTutor"] = "Ocorreu algum erro ao excluir o tutor";
+        }
+
+        return false;
+    }      
+
     public function TutorExiste() {
         $conn = new Conexao();
         $conn = $conn->conectar();
@@ -82,11 +106,11 @@ class TutoresModel{
         return $result > 0;
     }
 
-    public function ConsultarTutorLogado(){
+    public function ConsultarTutor(){
         $conn = new Conexao();
         $conn = $conn->conectar();        
-        $stmt = $conn->prepare("SELECT * FROM tutores where USUARIO = ?");
-        $stmt->execute([$_SESSION["id_usuario_logado"]]);
+        $stmt = $conn->prepare("SELECT * FROM tutores where USUARIO = ?");      
+        $stmt->execute([$_GET['idTutor']]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
