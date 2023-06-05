@@ -20,6 +20,7 @@ class LoginController {
         if ($authenticated) {
             // Inicia a sessão do usuário e redireciona para a página principal
             $_SESSION["id_usuario_logado"] = $user->ObterIdUsuario(); 
+            $_SESSION["nome_usuario_logado"] = $user->ObterNomeUsuario($_SESSION["id_usuario_logado"]); 
 
             header('Location:'.URL_BASE.'app/views/Esqueleto/index.php');
         } else {

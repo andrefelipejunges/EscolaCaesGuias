@@ -16,8 +16,14 @@ include_once "../../../Config.php";
 
 <body>
   <header>
+    <?php session_start()?>
     <nav class="navbar fixed-top navbar-light bg-light bg-white">
         <a class="navbar-brand" href="<?php echo URL_BASE.'app/views/Esqueleto/index.php';?>"><img src="<?php echo URL_BASE.'assets/img/Logo_Escola_Caes_Guias_Keller.png';?>" class ="logo"> </a>
+    
+         <?php if(isset($_SESSION["nome_usuario_logado"])) { ?>
+            <?php $nomeUsuario = $_SESSION["nome_usuario_logado"] ; ?>      
+            <li class="menu-item-user-logged"><?php echo $nomeUsuario; ?></li>
+         <?php } ?>
     </nav>
   </header>
   
@@ -27,8 +33,6 @@ include_once "../../../Config.php";
       <nav>
         <ul class="menu">
           <li><a href ="<?php echo URL_BASE.'app/views/Esqueleto/index.php';?>"> Home</a></li>
-
-          <?php session_start()?>
           <?php if(!isset($_SESSION["id_usuario_logado"])) { ?>
 
             <li><a href ="<?php echo URL_BASE.'app/views/Login/LoginView.php';?>"> Login</a></li>

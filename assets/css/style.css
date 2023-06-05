@@ -104,7 +104,13 @@ p {
 	margin-bottom: 20px;
 }
 
-.user-label {
-   color: red;
-   text-align: right;
+.menu-item-user-logged {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: bold;
+  color: red;
+  text-transform: uppercase;
 }

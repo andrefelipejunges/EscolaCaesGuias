@@ -41,6 +41,22 @@ class Usuario {
             return false;
         }
     }
+
+    public function ObterNomeUsuario($id) {
+        $conn = new Conexao();
+        $conn = $conn->conectar();
+
+        $stmt = $conn->prepare("SELECT nome FROM tutores WHERE usuario=?");
+        $stmt->execute([$id]);
+
+        if ($stmt->rowCount() == 1) {
+            // Se houver exatamente 1 linha no resultado, retorna o Nome
+            return $stmt->fetchColumn();
+        } else {
+            // Caso contrário, retorna falso
+            return false;
+        }
+    }
 }
 
 ?>
