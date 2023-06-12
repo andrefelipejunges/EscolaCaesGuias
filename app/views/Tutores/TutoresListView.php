@@ -21,7 +21,7 @@ if (isset($_GET['idExcluirTutor'])) {
 }
 
 // Recupera todos os usuários
-$tutores = $tutoresController->processRequest("consultarTutor");
+$tutores = $tutoresController->processRequest("consultarTutores");
 
 $registrosPorPagina = 10;
 // Calcula o número total de páginas
@@ -140,8 +140,8 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
         <?php foreach ($tutores as $tutor): ?>
             <tr>
                 <td><?php echo $tutor['NOME'] ?></td>
-                <td><?php echo $tutor['CPF'] ?></td>
-                <td><?php echo $tutor['DATA_NASCIMENTO'] ?></td>
+                <td><?php echo substr($tutor['CPF'], 0, 3) . '.' . substr($tutor['CPF'], 3, 3) . '.' . substr($tutor['CPF'], 6, 3) . '-' . substr($tutor['CPF'], 9) ?></td>
+                <td><?php echo date('d/m/Y', strtotime($tutor['DATA_NASCIMENTO'])) ?></td>
                 <td>
                     <div class="btn-container">
                         <a class="btn btn-edit" href="TutoresView.php?idTutor=<?php echo $tutor['ID'] ?>">Alterar</a>

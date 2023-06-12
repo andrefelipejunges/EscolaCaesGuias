@@ -20,6 +20,7 @@ if ($tutor != null) {
     $id = $tutor->getId();
     $nome = $tutor->getNome();
     $cpf = $tutor->getCpf();
+    $usuario = $tutor->getUsuario();
     
     if ($tutor->getNascimento() <> NULL)
       $nascimento = date('Y-m-d', strtotime($tutor->getNascimento()));
@@ -38,6 +39,7 @@ if ($tutor != null) {
     $nome = "";
     $cpf = "";
     $nascimento = "";
+    $usuario = "";
 } 
 
 ?>

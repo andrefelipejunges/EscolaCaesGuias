@@ -10,6 +10,7 @@ class TutoresController {
 
     private function incluirEditar(){
         session_start();
+        $this->tutor->setId($_POST['id']);
         $this->tutor->setNome($_POST['nome']);
         $this->tutor->setCpf($_POST['cpf']);
         $this->tutor->setNascimento($_POST['nascimento']);
@@ -82,7 +83,7 @@ class TutoresController {
             case "consultarTutor":
                 return $this->consultarTutor();
                 break;
-            case "consultarTutor":
+            case "consultarTutores":
                 return $this->consultar();
                 break;
             case "ExcluirTutor":

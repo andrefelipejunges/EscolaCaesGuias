@@ -11,6 +11,12 @@ if(isset($_POST['submit'])) {
 require_once DIR_PATH.'/app/controllers/Caes/CaesController.php';
 $caesController = new CaesController();
 
+// Processa a exclusão de um cão
+if(isset($_GET['idExcluirCao'])) {
+    $idCao = $_GET['idExcluirCao'];
+    $caesController->processRequest("ExcluirCao", $idCao);
+}
+
 // Recupera todos os cães
 $caes = $caesController->processRequest("consultarCaes");
 
@@ -120,17 +126,22 @@ $caes = array_slice($caes, $registroInicial, $registrosPorPagina);
             <th style="background-color: #2F4F4F; color: white;">Nome Mãe</th>
             <th style="background-color: #2F4F4F; color: white;">Data cadastro</th>
             <th style="background-color: #2F4F4F; color: white;">Sexo</th>
+            <th style="background-color: #2F4F4F; color: white;">Ações</th>
         </tr>
         <?php foreach ($caes as $cao): ?>
             <tr>
                 <td><?php echo $cao['NOME'] ?></td>
-                <td><?php echo $cao['RAÇA'] ?></td>
+                <td><?php echo $cao['RACA'] ?></td>
                 <td><?php echo $cao['IDADE'] ?></td>
                 <td><?php echo $cao['PESO'] ?></td>
                 <td><?php echo $cao['NOME_PAI'] ?></td>
                 <td><?php echo $cao['NOME_MAE'] ?></td>
-                <td><?php echo $cao['DATA_CADASTRO'] ?></td>
+                <td><?php echo date('d/m/Y', strtotime($cao['DATA_CADASTRO'])) ?></td>
                 <td><?php echo $cao['SEXO'] ?></td>
+                <td>
+                    <a class="btn" href="EditarCao.php?idCao=<?php echo $cao['ID'] ?>">Alterar</a>
+                    <a class="btn btn-danger" href="?idExcluirCao=<?php echo $cao['ID'] ?>">Excluir</a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>

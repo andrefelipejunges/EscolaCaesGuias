@@ -59,7 +59,7 @@ if ($usuario != null) {
                 </div>
                 <div class="col-md-4">
                     <input id="id" name="id" class="form-control" type="hidden" placeholder="ID..." value="<?php echo $id; ?>" required readonly>
-                </div>                
+                </div>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit" >Salvar</button>
 
