@@ -99,8 +99,8 @@ class TutoresModel{
         $conn = new Conexao();
         $conn = $conn->conectar();
 
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM tutores WHERE USUARIO = ?");
-        $stmt->execute([$this->getUsuario()]);
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tutores WHERE ID = ?");
+        $stmt->execute([$this->getId()]);
         $result = $stmt->fetchColumn();
         return $result > 0;
     }

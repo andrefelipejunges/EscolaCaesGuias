@@ -47,7 +47,7 @@ class UsuariosController {
         $result = $this->usuario->excluir();
 
         if($result){
-            $_SESSION["MsgSucessoUsuario"] = "Usuário excluído com sucesso";
+           // $_SESSION["MsgSucessoUsuario"] = "Usuário excluído com sucesso";
         }
     }
 
