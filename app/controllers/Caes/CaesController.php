@@ -9,7 +9,7 @@ class CaesController {
     }
 
     private function incluirEditar(){
-
+        session_start();
         $sexo = $_POST["sexo"];
 
         if ($sexo == "masculino") {
@@ -17,7 +17,7 @@ class CaesController {
         } elseif ($sexo == "feminino") {
             $sexoGravado = "F";
         }
-
+        
         $this->cao->setId($_POST['id']);
         $this->cao->setNome($_POST['nome']);
         $this->cao->setRaca($_POST['raca']);
