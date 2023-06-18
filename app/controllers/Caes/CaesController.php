@@ -18,6 +18,7 @@ class CaesController {
             $sexoGravado = "F";
         }
 
+        $this->cao->setId($_POST['id']);
         $this->cao->setNome($_POST['nome']);
         $this->cao->setRaca($_POST['raca']);
         $this->cao->setIdade($_POST['idade']);
@@ -36,8 +37,8 @@ class CaesController {
         {
             $this->incluir();
         }
-
         header('Location:'.URL_BASE.'app/views/Caes/CaesView.php');
+
     }
 
     private function incluir(){    
@@ -57,6 +58,14 @@ class CaesController {
         }
     }
 
+    private function excluir(){
+        $result = $this->cao->excluir();
+
+        if($result){
+            //$_SESSION["MsgSucessoTutor"] = "Tutor excluído com sucesso";
+        }
+    }
+
     public function consultar() {
         // Chama a função "consultar" do modelo de cães
         $resultado = $this->cao->consultar();
@@ -65,19 +74,20 @@ class CaesController {
     }
 
     public function ConsultarCao() {
-        // Chama a função "consultar" do modelo de caos
+        // Chama a função "consultar" do modelo de Cães
         $resultado = $this->cao->ConsultarCao();
 
         if ($resultado) {
             $this->cao->setId($resultado['ID']);
             $this->cao->setNome($resultado['NOME']);
             $this->cao->setRaca($resultado['RACA']);
-            $this->cao->setIdade($resultado['EMAIL']);
+            $this->cao->setIdade($resultado['IDADE']);
             $this->cao->setPeso($resultado['PESO']);
             $this->cao->setNomePai($resultado['NOME_PAI']);
             $this->cao->setNomeMae($resultado['NOME_MAE']);
             $this->cao->setDataCadastro($resultado['DATA_CADASTRO']);            
-            $this->cao->setSexo($resultado['SEXO']);            
+            $this->cao->setSexo($resultado['SEXO']);       
+            $this->cao->setFoto($resultado['FOTO']);               
         }
          // Retorna o objeto usuário com as informações do usuário atualmente logado
         return $this->cao;
@@ -94,7 +104,10 @@ class CaesController {
                 break;
             case "consultarCao":
                 return $this->ConsultarCao();
-                break;                
+                break; 
+            case "ExcluirCao":
+                 return $this->excluir();
+                break;                               
             default:
             http_response_code(404);
             echo "Página não encontrada.";

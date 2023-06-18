@@ -22,7 +22,7 @@ class TutoresController {
             $this->editar();
         }
         else
-            {$this->incluir();}
+            $this->incluir();
 
         $idTutor = $_POST['id'];
         header('Location: ' . URL_BASE . 'app/views/Tutores/TutoresView.php?idTutor=' . $idTutor);
