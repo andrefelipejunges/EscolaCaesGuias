@@ -29,7 +29,6 @@ class EsqueciSenhaController {
 
             // Envia um email com a nova senha para o usuário
             $this->enviarEmailComNovaSenha($email, $login, $novaSenha);
-            //die(var_dump("passou"));
 
             $_SESSION["MensagemSucessoEmail"] = "OK";
         } else {

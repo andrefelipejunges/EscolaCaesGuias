@@ -147,10 +147,8 @@ class UsuariosModel{
         $conn = $conn->conectar();        
         $stmt = $conn->prepare("SELECT * FROM usuarios where id = ?");        
         if (isset($_GET['idUsuario'])) {
-            //die(var_dump($_GET['idUsuario']));
             $param = $_GET['idUsuario'];
         }else {
-            //die(var_dump($_SESSION["id_usuario_logado"]));
             $param = $_SESSION["id_usuario_logado"];
         }
         $stmt->execute([$param]);

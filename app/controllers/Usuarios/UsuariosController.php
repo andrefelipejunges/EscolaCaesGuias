@@ -75,7 +75,6 @@ class UsuariosController {
 
     public function processRequest($actionName) {
         // Chama a ação correspondente e exibe o resultado
-        //die(var_dump($actionName));
         switch ($actionName) {
             case "salvarUsuario":
                 $this->incluirEditar();

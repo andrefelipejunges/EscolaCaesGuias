@@ -12,7 +12,6 @@ require_once DIR_PATH.'/app/controllers/Tutores/TutoresController.php';
 $tutoresController = new TutoresController();
 
 if (isset($_GET['idExcluirTutor'])) {
-    //die(var_dump($_GET['idExcluirTutor']));
     // Obtém o ID do tutor a ser excluído
     $idUsuario = $_GET['idExcluirTutor'];
 

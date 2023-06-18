@@ -7,7 +7,6 @@ require_once DIR_PATH.'/app/controllers/Usuarios/UsuariosController.php';
 $usuariosController = new UsuariosController();
 
 if (isset($_GET['idExcluirUsuario'])) {
-    //die(var_dump($_GET['idExcluirUsuario']));
     // Obtém o ID do usuário a ser excluído
     $idUsuario = $_GET['idExcluirUsuario'];
 

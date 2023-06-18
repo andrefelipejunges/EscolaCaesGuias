@@ -13,9 +13,6 @@ $usuariosController = new UsuariosController();
 
 // Recupera o usuario
 $usuario = $usuariosController->processRequest("ConsultarUsuario");
-//$paginaAtual = $_GET['pagina']
-//die(var_dump($_SESSION["id_usuario_logado"]));
-//die(var_dump($_GET['idUsuario']));
 
 // Verifica se o objeto $usuario não é nulo
 if ($usuario != null) {
