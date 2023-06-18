@@ -8,14 +8,11 @@ if(isset($_POST['submit'])) {
 }
 
 // Cria uma instância do controlador de Tutores
-require_once DIR_PATH.'/app/controllers/Usuarios/CaesController.php';
+require_once DIR_PATH.'/app/controllers/Caes/CaesController.php';
 $caesController = new CaesController();
 
 // Recupera o usuario
 $cao = $caesController->processRequest("ConsultarCao");
-//$paginaAtual = $_GET['pagina']
-//die(var_dump($_SESSION["id_usuario_logado"]));
-//die(var_dump($_GET['idUsuario']));
 
 // Verifica se o objeto $usuario não é nulo
 if ($cao != null) {
