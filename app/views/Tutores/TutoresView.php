@@ -12,7 +12,10 @@ require_once DIR_PATH.'/app/controllers/Tutores/TutoresController.php';
 $tutoresController = new TutoresController();
 
 // Recupera o tutor logado
-$tutor = $tutoresController->processRequest("consultarTutor");
+if (isset($_GET['idTutor'])) 
+    $tutor = $tutoresController->processRequest("consultarTutor");
+else
+    $tutor = NULL;
 
 // Verifica se o objeto $tutor não é nulo
 if ($tutor != null) {
