@@ -47,7 +47,7 @@ if ($usuario != null) {
             <div class="row">
                 <div class="col-md-4">
                    <b> <label for="login">Login:</label></b>
-                    <input id="login" name="login" class="form-control" type="text" placeholder="Login..." value="<?php echo $login; ?>" required readonly>
+                    <input id="login" name="login" class="form-control" type="text" placeholder="Login..." value="<?php echo $login; ?>" required>
                 </div>
                 <div class="col-md-4">
                    <b> <label for="senha">Senha:</label> </b>

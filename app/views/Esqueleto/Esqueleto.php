@@ -45,8 +45,6 @@ include_once "../../../Config.php";
               <a href="<?php echo URL_BASE.'app/views/Tutores/TutoresView.php';?>">Tutores</a>
               <a href="<?php echo URL_BASE.'app/views/Caes/CaesView.php';?>">Cães</a>
               <a href="<?php echo URL_BASE.'app/views/Usuarios/UsuariosView.php';?>">Usuários</a>
-              <a href="<?php echo URL_BASE.'app/views/Terceiros/TerceirosView.php';?>">Terceiros</a>
-              <a href="<?php echo URL_BASE.'app/views/GrupoUsuarios/GrupoUsuariosView.php';?>">Grupo de usuários</a>
             </div>
           </li>
 
