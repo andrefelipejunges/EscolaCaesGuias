@@ -44,19 +44,17 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
 <html>
 <head>
     <title>Consulta de Tutores</title>
-    <style>
+     <style>
         table {
             border-collapse: collapse;
             width: 100%;
             text-align: left;
-            table-layout: fixed; /* Define a largura fixa para as células da tabela */
         }
 
         th, td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
-            word-wrap: break-word; /* Permite que o conteúdo longo seja quebrado em várias linhas */
         }
 
         th {
@@ -66,43 +64,6 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
 
         tr:nth-child(even) {
             background-color: #f2f2f2;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .container h1 {
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 4px;
-            text-decoration: none;
-            margin-top: 10px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-edit {
-            background-color: #2196F3;
-        }
-
-        .btn-delete {
-            background-color: #F44336;
-        }
-
-        .btn:hover {
-            background-color: #555;
         }
 
         .pagination {
@@ -121,9 +82,23 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
             margin: 0 5px;
         }
 
-                .pagination a.active {
+        .pagination a.active {
             background-color: #4CAF50;
             color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        .btn-danger {
+            background-color: #FF4136;
         }
     </style>
 </head>
@@ -145,7 +120,7 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
                 <td>
                     <div class="btn-container">
                         <a class="btn btn-edit" href="TutoresView.php?idTutor=<?php echo $tutor['ID'] ?>">Alterar</a>
-                        <a class="btn btn-delete" href="?idExcluirTutor=<?php echo $tutor['ID'] ?>">Excluir</a>
+                        <a class="btn btn-danger" href="?idExcluirTutor=<?php echo $tutor['ID'] ?>">Excluir</a>
                     </div>
                 </td>
             </tr>
