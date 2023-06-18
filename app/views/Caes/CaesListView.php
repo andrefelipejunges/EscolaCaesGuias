@@ -77,18 +77,16 @@ $caes = array_slice($caes, $registroInicial, $registrosPorPagina);
 
         .btn {
             display: inline-block;
+            padding: 8px 12px;
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
-            margin-top: 30px;
-            font-size: 18px;
-            cursor: pointer;
+            margin-right: 5px;
         }
 
-        .btn:hover {
-            background-color: #3e8e41;
+        .btn-danger {
+            background-color: #FF4136;
         }
 
         .pagination {
@@ -139,7 +137,7 @@ $caes = array_slice($caes, $registroInicial, $registrosPorPagina);
                 <td><?php echo date('d/m/Y', strtotime($cao['DATA_CADASTRO'])) ?></td>
                 <td><?php echo $cao['SEXO'] ?></td>
                 <td>
-                    <a class="btn" href="EditarCao.php?idCao=<?php echo $cao['ID'] ?>">Alterar</a>
+                    <a class="btn" href="CaesView.php?idCao=<?php echo $cao['ID'] ?>">Alterar</a>
                     <a class="btn btn-danger" href="?idExcluirCao=<?php echo $cao['ID'] ?>">Excluir</a>
                 </td>
             </tr>

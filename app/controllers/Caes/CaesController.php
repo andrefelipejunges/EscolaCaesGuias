@@ -64,6 +64,25 @@ class CaesController {
         return $resultado;
     }
 
+    public function ConsultarCao() {
+        // Chama a função "consultar" do modelo de caos
+        $resultado = $this->cao->ConsultarCao();
+
+        if ($resultado) {
+            $this->cao->setId($resultado['ID']);
+            $this->cao->setNome($resultado['NOME']);
+            $this->cao->setRaca($resultado['RACA']);
+            $this->cao->setIdade($resultado['EMAIL']);
+            $this->cao->setPeso($resultado['PESO']);
+            $this->cao->setNomePai($resultado['NOME_PAI']);
+            $this->cao->setNomeMae($resultado['NOME_MAE']);
+            $this->cao->setDataCadastro($resultado['DATA_CADASTRO']);            
+            $this->cao->setSexo($resultado['SEXO']);            
+        }
+         // Retorna o objeto usuário com as informações do usuário atualmente logado
+        return $this->cao;
+    }    
+
     public function processRequest($actionName) {
         // Chama a ação correspondente e exibe o resultado
         switch ($actionName) {
@@ -73,6 +92,9 @@ class CaesController {
             case "consultarCaes":
                 return $this->consultar();
                 break;
+            case "consultarCao":
+                return $this->ConsultarCao();
+                break;                
             default:
             http_response_code(404);
             echo "Página não encontrada.";

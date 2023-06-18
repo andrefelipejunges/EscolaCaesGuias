@@ -72,6 +72,9 @@ if ($tutor != null) {
                 <div class="col-md-4">
                     <input id="id" name="id" class="form-control" type="hidden" placeholder="ID..." value="<?php echo $id; ?>" required readonly>
                 </div>
+                <div class="col-md-4">
+                    <input id="usuario" name="usuario" class="form-control" type="hidden" placeholder="Usuario..." value="<?php echo $usuario; ?>" required readonly>
+                </div>                
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Salvar</button>
 
            <?php if (isset($_SESSION["MsgSucessoTutor"])) { ?>

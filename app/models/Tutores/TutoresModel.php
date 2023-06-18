@@ -62,10 +62,10 @@ class TutoresModel{
     }  
 
     public function editar(){
-        session_start();
+        //session_start();
         $conn = new Conexao();
         $conn = $conn->conectar();
-        die(var_dump($this->getUsuario()));
+        //die(var_dump($this->getUsuario()));
 
         // Atualiza o registro
         $stmt = $conn->prepare("UPDATE tutores SET NOME = ?, CPF = ?, DATA_NASCIMENTO = ? WHERE USUARIO = ?");

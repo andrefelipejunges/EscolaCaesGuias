@@ -7,6 +7,43 @@ if(isset($_POST['submit'])) {
     require_once DIR_PATH.'app/routes/Routes.php';
 }
 
+// Cria uma instância do controlador de Tutores
+require_once DIR_PATH.'/app/controllers/Usuarios/CaesController.php';
+$caesController = new CaesController();
+
+// Recupera o usuario
+$cao = $caesController->processRequest("ConsultarCao");
+//$paginaAtual = $_GET['pagina']
+//die(var_dump($_SESSION["id_usuario_logado"]));
+//die(var_dump($_GET['idUsuario']));
+
+// Verifica se o objeto $usuario não é nulo
+if ($cao != null) {
+    // Define as variáveis para preencher os campos da tela
+    $id = $usuario->getId();
+    $nome = $usuario->getNome();
+    $raca = $usuario->getRaca();
+    $idade = $usuario->getIdade();
+    $peso = $usuario->getPeso();
+    $nome_pai = $usuario->getNomePai();
+    $nome_mae = $usuario->getNomeMae();
+    $data_cadastro = $usuario->getDataCadastro();
+    $sexo = $usuario->getSexo();
+
+} else {
+    // Define as variáveis como vazias caso o objeto $usuario seja nulo
+    $id = "";
+    $id = "";
+    $nome = "";
+    $raca = "";
+    $idade = "";
+    $peso = "";
+    $nome_pai = "";
+    $nome_mae = "";
+    $data_cadastro = "";
+    $sexo = "";
+} 
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +51,7 @@ if(isset($_POST['submit'])) {
    <head>
       <title>Dados do Cão</title>
    <body>
-      <form method="post" action ="<?php echo URL_BASE.'app/routes/routes.php?action=salvarCao';?>">
+      <form method="post" action ="<?php echo URL_BASE.'app/routes/routes.php?action=salvarCao?';?>">
          <div class="container-cadastro">
          <h1 class="h3 mb-3 font-weight-normal"><b>Dados do Cão</b></h1>
          <br>

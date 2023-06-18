@@ -11,6 +11,7 @@ class TutoresController {
     private function incluirEditar(){
         session_start();
         $this->tutor->setId($_POST['id']);
+        //die(var_dump($_POST['usuario']));
         $this->tutor->setNome($_POST['nome']);
         $this->tutor->setCpf($_POST['cpf']);
         $this->tutor->setNascimento($_POST['nascimento']);
