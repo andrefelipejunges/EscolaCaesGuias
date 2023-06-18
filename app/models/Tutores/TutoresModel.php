@@ -47,7 +47,6 @@ class TutoresModel{
         session_start();
         $conn = new Conexao();
         $conn = $conn->conectar(); 
-        die(var_dump($this->getUsuario()));
 
         $stmt = $conn->prepare("INSERT INTO tutores (`NOME`, `USUARIO`, `CPF`, `DATA_NASCIMENTO` ) VALUES (?,?,?,?)");
         try {

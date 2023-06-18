@@ -80,8 +80,8 @@ if ($cao != null) {
             <div class="col-md-3">
                   <b><label for="sexo">Sexo:</label></b>
                   <select id="sexo" name="sexo" class="form-control" required>
-                     <option value="masculino">Masculino</option>
-                     <option value="feminino">Feminino</option>
+                     <option value="masculino">Macho</option>
+                     <option value="feminino">Fêmea</option>
                   </select>
                </div>
            <div class="col-md-5">

@@ -90,7 +90,7 @@ class CaesModel {
         $conn = new Conexao();
         $conn = $conn->conectar(); 
 
-        $stmt = $conn->prepare("INSERT INTO CAES (`NOME`, `RAÇA`, `IDADE`, `PESO`, `NOME_PAI`, `NOME_MAE`, `FOTO`, `DATA_CADASTRO`, `SEXO`) VALUES (?,?,?,?,?,?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO CAES (`NOME`, `RACA`, `IDADE`, `PESO`, `NOME_PAI`, `NOME_MAE`, `FOTO`, `DATA_CADASTRO`, `SEXO`) VALUES (?,?,?,?,?,?,?,?,?)");
         try {
             if($stmt->execute([$this->getNome(), $this->getRaca(), $this->getIdade(), $this->getPeso(), $this->getNomePai(), $this->getNomeMae(), $this->getFoto(), 
                                                                                       $this->getDataCadastro(), $this->getSexo()])) {
