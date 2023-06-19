@@ -11,8 +11,11 @@ if(isset($_POST['submit'])) {
 require_once DIR_PATH.'/app/controllers/Usuarios/UsuariosController.php';
 $usuariosController = new UsuariosController();
 
-// Recupera o usuario
-$usuario = $usuariosController->processRequest("ConsultarUsuario");
+// Recupera o Usuário
+if (isset($_GET['idUsuario'])) 
+    $usuario = $usuariosController->processRequest("ConsultarUsuario");
+else
+    $usuario = NULL;
 
 // Verifica se o objeto $usuario não é nulo
 if ($usuario != null) {
@@ -25,6 +28,7 @@ if ($usuario != null) {
 } else {
     // Define as variáveis como vazias caso o objeto $usuario seja nulo
     $id = "";
+    $login = "";
     $nome = "";
     $senha = "";
     $email = "";

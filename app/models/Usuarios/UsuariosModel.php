@@ -86,7 +86,6 @@ class UsuariosModel{
     }
 
     public function excluir(){
-        //session_start();
         $conn = new Conexao();
         $conn = $conn->conectar();
 
@@ -136,8 +135,8 @@ class UsuariosModel{
     public function consultar(){
         $conn = new Conexao();
         $conn = $conn->conectar();        
-        $stmt = $conn->prepare("SELECT * FROM usuarios");
-        $stmt->execute();
+        $stmt = $conn->prepare("SELECT * FROM usuarios where ID <> ?");
+        $stmt->execute([$_SESSION["id_usuario_logado"]]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -146,11 +145,7 @@ class UsuariosModel{
         $conn = new Conexao();
         $conn = $conn->conectar();        
         $stmt = $conn->prepare("SELECT * FROM usuarios where id = ?");        
-        if (isset($_GET['idUsuario'])) {
-            $param = $_GET['idUsuario'];
-        }else {
-            $param = $_SESSION["id_usuario_logado"];
-        }
+        $param = $_GET['idUsuario'];
         $stmt->execute([$param]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
