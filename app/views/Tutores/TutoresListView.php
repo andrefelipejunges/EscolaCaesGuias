@@ -42,18 +42,22 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>
     <title>Consulta de Tutores</title>
-     <style>
+    <style>
         table {
             border-collapse: collapse;
             width: 100%;
             text-align: left;
+            table-layout: fixed; /* Define a largura fixa para as células da tabela */
         }
 
         th, td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            word-wrap: break-word; /* Permite que o conteúdo longo seja quebrado em várias linhas */
         }
 
         th {
@@ -63,6 +67,43 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
 
         tr:nth-child(even) {
             background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .container h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-edit {
+            background-color: #2196F3;
+        }
+
+        .btn-delete {
+            background-color: #F44336;
+        }
+
+        .btn:hover {
+            background-color: #555;
         }
 
         .pagination {
@@ -81,25 +122,32 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
             margin: 0 5px;
         }
 
-        .pagination a.active {
+                .pagination a.active {
             background-color: #4CAF50;
             color: white;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 8px 12px;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-right: 5px;
-        }
-
-        .btn-danger {
-            background-color: #FF4136;
         }
     </style>
+
+    <script>
+        function confirmarExclusao(idTutor) {
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: 'Deseja realmente excluir o tutor?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Excluir',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href ="?idExcluirTutor=" + idTutor;
+                   
+                }
+            });
+        }
+    </script>
+
 </head>
 <body>
 <div class="container-cadastro">
@@ -117,11 +165,11 @@ $tutores = array_slice($tutores, $registroInicial, $registrosPorPagina);
                 <td><?php echo substr($tutor['CPF'], 0, 3) . '.' . substr($tutor['CPF'], 3, 3) . '.' . substr($tutor['CPF'], 6, 3) . '-' . substr($tutor['CPF'], 9) ?></td>
                 <td><?php echo date('d/m/Y', strtotime($tutor['DATA_NASCIMENTO'])) ?></td>
                 <td>
-                    <div class="btn-container">
-                        <a class="btn btn-edit" href="TutoresView.php?idTutor=<?php echo $tutor['ID'] ?>">Alterar</a>
-                        <a class="btn btn-danger" href="?idExcluirTutor=<?php echo $tutor['ID'] ?>">Excluir</a>
-                    </div>
-                </td>
+                 <div class="btn-container">
+                    <a class="btn btn-edit" href="TutoresView.php?idTutor=<?php echo $tutor['ID'] ?>">Alterar</a>
+                    <a class="btn btn-delete" href="?idExcluirTutor=<?php echo $tutor['ID'] ?>" onclick="confirmarExclusao(<?php echo $tutor['ID'] ?>); return false;">Excluir</a>
+                </div>
+              </td>
             </tr>
         <?php endforeach; ?>
     </table>
