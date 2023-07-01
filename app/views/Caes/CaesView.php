@@ -90,7 +90,7 @@ if ($cao != null) {
                </div>
            <div class="col-md-5">
                <b><label for="foto">Foto:</label></b>
-               <input id="foto" name="foto" class="form-control" type="file" accept="image/*" value="<?php echo $foto; ?>" required>
+               <input id="foto" name="foto" class="form-control" type="file" accept="image/*" value="<?php echo $foto; ?>">
           </div>
 
           <div class="col-md-4">

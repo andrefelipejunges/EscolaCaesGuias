@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03-Jun-2023 às 19:08
+-- Tempo de geração: 01-Jul-2023 às 05:12
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -39,8 +39,44 @@ CREATE TABLE `caes` (
   `NOME_MAE` varchar(30) NOT NULL,
   `DATA_CADASTRO` date NOT NULL,
   `SEXO` varchar(1) NOT NULL,
-  `FOTO` blob NOT NULL
+  `FOTO` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Cães';
+
+--
+-- Extraindo dados da tabela `caes`
+--
+
+INSERT INTO `caes` (`ID`, `NOME`, `RACA`, `IDADE`, `PESO`, `NOME_PAI`, `NOME_MAE`, `DATA_CADASTRO`, `SEXO`, `FOTO`) VALUES
+(1, 'Max', 'Labrador', 3, 25, 'Rocky', 'Luna', '2022-01-01', 'M', NULL),
+(2, 'Bella', 'Golden Retriever', 4, 30, 'Max', 'Luna', '2021-12-15', 'F', NULL),
+(3, 'Charlie', 'Bulldog', 2, 20, 'Max', 'Luna', '2023-05-10', 'M', NULL),
+(4, 'Lucy', 'Beagle', 5, 18, 'Buddy', 'Daisy', '2020-09-20', 'F', NULL),
+(5, 'Daisy', 'Poodle', 1, 12, 'Rocky', 'Luna', '2022-03-05', 'F', NULL),
+(6, 'Cooper', 'Schnauzer', 4, 22, 'Max', 'Luna', '2021-11-11', 'M', NULL),
+(7, 'Lola', 'Chihuahua', 3, 8, 'Buddy', 'Daisy', '2023-01-30', 'F', NULL),
+(8, 'Rocky', 'Labrador', 2, 26, 'Max', 'Luna', '2020-10-25', 'M', NULL),
+(9, 'Sadie', 'Boxer', 6, 28, 'Buddy', 'Daisy', '2022-08-17', 'F', NULL),
+(10, 'Milo', 'Shih Tzu', 1, 10, 'Rocky', 'Luna', '2023-06-05', 'M', NULL),
+(11, 'Molly', 'Husky', 4, 24, 'Max', 'Luna', '2021-12-10', 'F', NULL),
+(12, 'Buddy', 'Golden Retriever', 5, 32, 'Max', 'Luna', '2020-09-05', 'M', NULL),
+(13, 'Zoe', 'Bulldog', 2, 19, 'Buddy', 'Daisy', '2022-04-20', 'F', NULL),
+(14, 'Bailey', 'Poodle', 3, 14, 'Rocky', 'Luna', '2023-02-15', 'M', NULL),
+(15, 'Luna', 'Labrador', 1, 28, 'Max', 'Luna', '2021-10-30', 'F', NULL),
+(16, 'Charlie', 'Beagle', 6, 16, 'Rocky', 'Luna', '2020-07-12', 'M', NULL),
+(17, 'Sophie', 'Chihuahua', 4, 9, 'Buddy', 'Daisy', '2022-05-18', 'F', NULL),
+(18, 'Oliver', 'Schnauzer', 2, 23, 'Rocky', 'Luna', '2021-11-28', 'M', NULL),
+(19, 'Mia', 'Boxer', 3, 27, 'Max', 'Luna', '2020-12-06', 'F', NULL),
+(20, 'Toby', 'Shih Tzu', 5, 11, 'Buddy', 'Daisy', '2023-03-14', 'M', NULL),
+(21, 'Ruby', 'Husky', 1, 21, 'Rocky', 'Luna', '2022-01-02', 'F', NULL),
+(22, 'Lucky', 'Golden Retriever', 4, 29, 'Max', 'Luna', '2021-09-09', 'M', NULL),
+(23, 'Coco', 'Bulldog', 2, 17, 'Max', 'Luna', '2020-08-16', 'F', NULL),
+(24, 'Zeus', 'Poodle', 6, 13, 'Buddy', 'Daisy', '2022-07-25', 'M', NULL),
+(25, 'Lily', 'Labrador', 1, 30, 'Rocky', 'Luna', '2023-05-01', 'F', NULL),
+(26, 'Duke', 'Beagle', 5, 15, 'Max', 'Luna', '2021-10-18', 'M', NULL),
+(27, 'Maggie', 'Chihuahua', 3, 10, 'Buddy', 'Daisy', '2020-11-30', 'F', NULL),
+(28, 'Bear', 'Schnauzer', 2, 24, 'Rocky', 'Luna', '2022-04-08', 'M', NULL),
+(29, 'Coco', 'Boxer', 4, 26, 'Max', 'Luna', '2021-08-20', 'F', NULL),
+(30, 'Oscar', 'Shih Tzu', 1, 9, 'Buddy', 'Daisy', '2023-01-10', 'M', NULL);
 
 -- --------------------------------------------------------
 
@@ -291,6 +327,56 @@ INSERT INTO `contatos` (`id`, `nome`, `email`, `telefone`, `cep`, `endereco`, `b
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `eventos`
+--
+
+CREATE TABLE `eventos` (
+  `ID` int(11) NOT NULL,
+  `NOME` varchar(30) NOT NULL,
+  `DESCRICAO` varchar(50) DEFAULT NULL,
+  `DATA` date NOT NULL,
+  `CAO` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `eventos`
+--
+
+INSERT INTO `eventos` (`ID`, `NOME`, `DESCRICAO`, `DATA`, `CAO`) VALUES
+(1, 'Vacinação', 'Vacinação anual para prevenção de doenças', '2023-07-01', 'Rex'),
+(2, 'Banho e Tosa', 'Banho e tosa para deixar o pet limpo e com a pelag', '2023-07-02', 'Mel'),
+(3, 'Passeio no Parque', 'Passeio divertido no parque com o pet', '2023-07-03', 'Max'),
+(4, 'Adestramento', 'Sessão de adestramento para melhorar o comportamen', '2023-07-04', 'Luna'),
+(5, 'Consulta Veterinária', 'Consulta de rotina com o veterinário', '2023-07-05', 'Charlie'),
+(6, 'Encontro de Cães', 'Encontro de cães da mesma raça para socialização', '2023-07-06', 'Bella'),
+(7, 'Treinamento de Agility', 'Treinamento de agility para exercitar e estimular ', '2023-07-07', 'Toby'),
+(8, 'Exposição Canina', 'Participação em uma exposição canina para mostrar ', '2023-07-08', 'Lola'),
+(9, 'Aula de Natação', 'Aula de natação para cães, uma atividade refrescan', '2023-07-09', 'Rocky'),
+(10, 'Festa de Aniversário', 'Comemoração do aniversário do pet com amigos e pet', '2023-07-10', 'Maggie'),
+(11, 'Caminhada na Praia', 'Caminhada relaxante na praia junto com o pet', '2023-07-11', 'Duke'),
+(12, 'Curso de Obediência', 'Curso para ensinar comandos básicos de obediência ', '2023-07-12', 'Lucky'),
+(13, 'Café com Cães', 'Encontro descontraído para os tutores interagirem ', '2023-07-13', 'Coco'),
+(14, 'Terapia Assistida por Animais', 'Sessão de terapia com animais para auxiliar na rec', '2023-07-14', 'Buddy'),
+(15, 'Caminhada Ecológica', 'Caminhada em trilha na natureza junto com o pet', '2023-07-15', 'Sophie'),
+(16, 'Aula de Agility', 'Aula de agility para praticar obstáculos e estimul', '2023-07-16', 'Bailey'),
+(17, 'Curso de Primeiros Socorros', 'Curso para aprender técnicas de primeiros socorros', '2023-07-17', 'Cooper'),
+(18, 'Piquenique no Parque', 'Piquenique divertido no parque com o pet', '2023-07-18', 'Luna'),
+(19, 'Aula de Canicross', 'Aula de canicross, uma modalidade esportiva que en', '2023-07-19', 'Max'),
+(20, 'Sessão de Fotos', 'Sessão de fotos profissional para capturar momento', '2023-07-20', 'Bella'),
+(21, 'Encontro de Raças', 'Encontro de diferentes raças de cães para comparti', '2023-07-21', 'Toby'),
+(22, 'Exposição de Agility', 'Participação em uma competição de agility para mos', '2023-07-22', 'Lola'),
+(23, 'Aula de Treinamento Positivo', 'Aula de treinamento baseado em reforço positivo pa', '2023-07-23', 'Rocky'),
+(24, 'Caminhada Noturna', 'Caminhada noturna com o pet para explorar a cidade', '2023-07-24', 'Maggie'),
+(25, 'Festival de Comida para Cães', 'Evento com diferentes opções de comida e petiscos ', '2023-07-25', 'Duke'),
+(26, 'Cinema ao Ar Livre', 'Sessão de cinema ao ar livre especialmente para tu', '2023-07-26', 'Lucky'),
+(27, 'Workshop de Massagem para Cães', 'Workshop para aprender técnicas de massagem relaxa', '2023-07-27', 'Coco'),
+(28, 'Cãominhada Beneficente', 'Caminhada com o pet em apoio a uma causa social', '2023-07-28', 'Buddy'),
+(29, 'Aula de Canisport', 'Aula de canisport, que envolve atividades esportiv', '2023-07-29', 'Sophie'),
+(30, 'Feira de Adoção', 'Feira para adoção de cães em parceria com abrigos ', '2023-07-30', 'Bailey');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `grupos`
 --
 
@@ -318,26 +404,38 @@ CREATE TABLE `tutores` (
 --
 
 INSERT INTO `tutores` (`ID`, `NOME`, `USUARIO`, `CPF`, `DATA_NASCIMENTO`) VALUES
-(1, 'Lucas Santos', 1, '11122233344', '1990-01-01'),
-(2, 'Gabriela Silva', 2, '55566677788', '1985-02-15'),
-(3, 'Juliana Oliveira', 3, '99988877766', '1995-06-30'),
-(4, 'Pedro Henrique', 4, '44455566677', '1992-11-11'),
-(5, 'Ana Paula Vieira', 5, '33322211100', '1980-08-24'),
-(6, 'Thiago Alves', 6, '22233344455', '1991-05-06'),
-(7, 'Carla Souza', 7, '66655544433', '1982-04-19'),
-(8, 'Luciana Pereira', 8, '77788899900', '1994-12-12'),
-(9, 'Ricardo Santos', 9, '88899900011', '1987-03-03'),
-(10, 'Patrícia Lima', 10, '77766655544', '1998-07-28'),
-(11, 'Fernando Oliveira', 11, '66677788899', '1981-02-18'),
-(12, 'Camila Silva', 12, '22211133344', '1993-09-15'),
-(13, 'Rodrigo Souza', 13, '55544433322', '1996-10-20'),
-(14, 'Mariana Costa', 14, '44433322211', '1984-12-31'),
-(15, 'Lucas Barbosa', 15, '99988877766', '1989-06-25'),
-(16, 'Aline Pereira', 16, '33344455566', '1997-01-09'),
-(17, 'Bruno Oliveira', 17, '11122233344', '1983-07-13'),
-(18, 'Mônica Santos', 18, '88899900011', '1995-04-22'),
-(19, 'Renato Almeida', 19, '55566677788', '1990-11-27'),
-(20, 'Luiza Souza', 20, '22233344455', '1988-03-08');
+(1, 'João Silva', 1, '11111111111', '1990-01-01'),
+(2, 'Maria Santos', 2, '22222222222', '1985-05-10'),
+(3, 'Pedro Oliveira', 3, '33333333333', '1992-03-15'),
+(4, 'Ana Souza', 4, '44444444444', '1988-07-20'),
+(5, 'Carlos Rodrigues', 5, '55555555555', '1995-12-25'),
+(6, 'Mariana Almeida', 6, '66666666666', '1993-08-05'),
+(7, 'Fernanda Costa', 7, '77777777777', '1987-06-30'),
+(8, 'Rafael Santos', 8, '88888888888', '1991-02-14'),
+(9, 'Juliana Pereira', 9, '99999999999', '1989-09-09'),
+(10, 'Lucas Oliveira', 10, '10101010101', '1997-04-03'),
+(11, 'Camila Silva', 11, '11111111112', '1994-11-07'),
+(12, 'Daniel Souza', 12, '22222222223', '1986-10-12'),
+(13, 'Isabela Alves', 13, '33333333334', '1998-06-28'),
+(14, 'Gustavo Martins', 14, '44444444445', '1992-09-16'),
+(15, 'Larissa Ferreira', 15, '55555555556', '1987-07-11'),
+(16, 'Ricardo Gomes', 16, '66666666667', '1996-03-08'),
+(17, 'Amanda Santos', 17, '77777777778', '1990-05-24'),
+(18, 'Marcos Costa', 18, '88888888889', '1988-12-29'),
+(19, 'Beatriz Lima', 19, '99999999990', '1993-02-02'),
+(20, 'Diego Fernandes', 20, '20202020202', '1995-10-19'),
+(21, 'Patrícia Castro', 21, '21212121212', '1991-11-23'),
+(22, 'Eduardo Rocha', 22, '22222222222', '1997-09-04'),
+(23, 'Sofia Nunes', 23, '23232323232', '1994-04-09'),
+(24, 'Henrique Santos', 24, '24242424242', '1986-06-27'),
+(25, 'Lívia Oliveira', 25, '25252525252', '1998-08-13'),
+(26, 'Gabriel Sousa', 26, '26262626262', '1992-12-21'),
+(27, 'Isabella Fernandes', 27, '27272727272', '1985-09-16'),
+(28, 'Matheus Lima', 28, '28282828282', '1993-07-05'),
+(29, 'Laura Rodrigues', 29, '29292929292', '1989-06-25'),
+(30, 'Arthur Santos', 30, '30303030303', '1996-03-18'),
+(31, 'Hellen Keller', 31, '30303030303', '1996-03-18'),
+(32, 'Vinícius Junges', 32, '30303030303', '1996-03-18');
 
 -- --------------------------------------------------------
 
@@ -360,87 +458,46 @@ CREATE TABLE `usuarios` (
   `ID` int(10) NOT NULL COMMENT 'Identificador do usuário.',
   `LOGIN` varchar(20) NOT NULL COMMENT 'Login para entrar no sistema.',
   `SENHA` varchar(20) NOT NULL COMMENT 'Senha do usuário.',
-  `EMAIL` varchar(70) NOT NULL COMMENT 'E-mail usado na redefinição de senha.',
-  `FOTO` blob NOT NULL
+  `EMAIL` varchar(70) NOT NULL COMMENT 'E-mail usado na redefinição de senha.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Usuários do sistema';
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID`, `LOGIN`, `SENHA`, `EMAIL`, `FOTO`) VALUES
-(1, 'andre', 'andre', 'user1@teste.com', ''),
-(2, 'user2', 'senha2', 'user2@teste.com', ''),
-(3, 'user3', 'senha3', 'user3@teste.com', ''),
-(4, 'user4', 'senha4', 'user4@teste.com', ''),
-(5, 'user5', 'senha5', 'user5@teste.com', ''),
-(6, 'user6', 'senha6', 'user6@teste.com', ''),
-(7, 'user7', 'senha7', 'user7@teste.com', ''),
-(8, 'user8', 'senha8', 'user8@teste.com', ''),
-(9, 'user9', 'senha9', 'user9@teste.com', ''),
-(10, 'user10', 'senha10', 'user10@teste.com', ''),
-(11, 'user11', 'senha11', 'user11@teste.com', ''),
-(12, 'user12', 'senha12', 'user12@teste.com', ''),
-(13, 'user13', 'senha13', 'user13@teste.com', ''),
-(14, 'user14', 'senha14', 'user14@teste.com', ''),
-(15, 'user15', 'senha15', 'user15@teste.com', ''),
-(16, 'user16', 'senha16', 'user16@teste.com', ''),
-(17, 'user17', 'senha17', 'user17@teste.com', ''),
-(18, 'user18', 'senha18', 'user18@teste.com', ''),
-(19, 'user19', 'senha19', 'user19@teste.com', ''),
-(20, 'user20', 'senha20', 'user20@teste.com', ''),
-(21, 'user21', 'senha21', 'user21@teste.com', ''),
-(22, 'user22', 'senha22', 'user22@teste.com', ''),
-(23, 'user23', 'senha23', 'user23@teste.com', ''),
-(24, 'user24', 'senha24', 'user24@teste.com', ''),
-(25, 'user25', 'senha25', 'user25@teste.com', ''),
-(26, 'user26', 'senha26', 'user26@teste.com', ''),
-(27, 'user27', 'senha27', 'user27@teste.com', ''),
-(28, 'user28', 'senha28', 'user28@teste.com', ''),
-(29, 'user29', 'senha29', 'user29@teste.com', ''),
-(30, 'user30', 'senha30', 'user30@teste.com', ''),
-(31, 'user31', 'senha31', 'user31@teste.com', ''),
-(32, 'user32', 'senha32', 'user32@teste.com', ''),
-(33, 'user33', 'senha33', 'user33@teste.com', ''),
-(34, 'user34', 'senha34', 'user34@teste.com', ''),
-(35, 'user35', 'senha35', 'user35@teste.com', ''),
-(36, 'user36', 'senha36', 'user36@teste.com', ''),
-(37, 'user37', 'senha37', 'user37@teste.com', ''),
-(38, 'mgray38', '123456', 'mgray38@example.com', ''),
-(39, 'dramos39', '123456', 'dramos39@example.com', ''),
-(40, 'jgonzales40', '123456', 'jgonzales40@example.com', ''),
-(41, 'lfernandez41', '123456', 'lfernandez41@example.com', ''),
-(42, 'mramirez42', '123456', 'mramirez42@example.com', ''),
-(43, 'jwalker43', '123456', 'jwalker43@example.com', ''),
-(44, 'sandersen44', '123456', 'sandersen44@example.com', ''),
-(45, 'cdavis45', '123456', 'cdavis45@example.com', ''),
-(46, 'lmurphy46', '123456', 'lmurphy46@example.com', ''),
-(47, 'mwood47', '123456', 'mwood47@example.com', ''),
-(48, 'tphillips48', '123456', 'tphillips48@example.com', ''),
-(49, 'brogers49', '123456', 'brogers49@example.com', ''),
-(50, 'awatson50', '123456', 'awatson50@example.com', ''),
-(51, 'lstewart51', '123456', 'lstewart51@example.com', ''),
-(52, 'jprice52', '123456', 'jprice52@example.com', ''),
-(53, 'pwatkins53', '123456', 'pwatkins53@example.com', ''),
-(54, 'vwebb54', '123456', 'vwebb54@example.com', ''),
-(55, 'kfisher55', '123456', 'kfisher55@example.com', ''),
-(56, 'jburton56', '123456', 'jburton56@example.com', ''),
-(57, 'eburns57', '123456', 'eburns57@example.com', ''),
-(58, 'cdixon58', '123456', 'cdixon58@example.com', ''),
-(59, 'mdaniel59', '123456', 'mdaniel59@example.com', ''),
-(60, 'sbryant60', '123456', 'sbryant60@example.com', ''),
-(61, 'mwatkins61', '123456', 'mwatkins61@example.com', ''),
-(62, 'zfranklin62', '123456', 'zfranklin62@example.com', ''),
-(63, 'pwatson63', '123456', 'pwatson63@example.com', ''),
-(64, 'nprice64', '123456', 'nprice64@example.com', ''),
-(65, 'scoleman65', '123456', 'scoleman65@example.com', ''),
-(66, 'jwatkins66', '123456', 'jwatkins66@example.com', ''),
-(67, 'jburns67', '123456', 'jburns67@example.com', ''),
-(68, 'rcook68', '123456', 'rcook68@example.com', ''),
-(69, 'pburton69', '123456', 'pburton69@example.com', ''),
-(70, 'jcampbell70', '123456', 'jcampbell70@example.com', ''),
-(71, 'bgarza71', '123456', 'bgarza71@example.com', ''),
-(72, 'kmurray72', '123456', 'kmurray72@example.com', '');
+INSERT INTO `usuarios` (`ID`, `LOGIN`, `SENHA`, `EMAIL`) VALUES
+(1, 'usuario1', 'senha123', 'usuario1@example.com'),
+(2, 'usuario2', 'senha456', 'usuario2@example.com'),
+(3, 'usuario3', 'senha789', 'usuario3@example.com'),
+(4, 'usuario4', 'senhaabc', 'usuario4@example.com'),
+(5, 'usuario5', 'senhaxyz', 'usuario5@example.com'),
+(6, 'usuario6', 'senha123', 'usuario6@example.com'),
+(7, 'usuario7', 'senha456', 'usuario7@example.com'),
+(8, 'usuario8', 'senha789', 'usuario8@example.com'),
+(9, 'usuario9', 'senhaabc', 'usuario9@example.com'),
+(10, 'usuario10', 'senhaxyz', 'usuario10@example.com'),
+(11, 'usuario11', 'senha123', 'usuario11@example.com'),
+(12, 'usuario12', 'senha456', 'usuario12@example.com'),
+(13, 'usuario13', 'senha789', 'usuario13@example.com'),
+(14, 'usuario14', 'senhaabc', 'usuario14@example.com'),
+(15, 'usuario15', 'senhaxyz', 'usuario15@example.com'),
+(16, 'usuario16', 'senha123', 'usuario16@example.com'),
+(17, 'usuario17', 'senha456', 'usuario17@example.com'),
+(18, 'usuario18', 'senha789', 'usuario18@example.com'),
+(19, 'usuario19', 'senhaabc', 'usuario19@example.com'),
+(20, 'usuario20', 'senhaxyz', 'usuario20@example.com'),
+(21, 'usuario21', 'senha123', 'usuario21@example.com'),
+(22, 'usuario22', 'senha456', 'usuario22@example.com'),
+(23, 'usuario23', 'senha789', 'usuario23@example.com'),
+(24, 'usuario24', 'senhaabc', 'usuario24@example.com'),
+(25, 'usuario25', 'senhaxyz', 'usuario25@example.com'),
+(26, 'usuario26', 'senha123', 'usuario26@example.com'),
+(27, 'usuario27', 'senha456', 'usuario27@example.com'),
+(28, 'usuario28', 'senha789', 'usuario28@example.com'),
+(29, 'usuario29', 'senhaabc', 'usuario29@example.com'),
+(30, 'usuario30', 'senhaxyz', 'usuario30@example.com'),
+(31, 'keller', 'keller', 'keller@gmail.com'),
+(32, 'vinicius', 'vinicius', 'vinicius.j2001@aluno.ifsc.edu.br');
 
 --
 -- Índices para tabelas despejadas
@@ -457,6 +514,12 @@ ALTER TABLE `caes`
 --
 ALTER TABLE `contatos`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `eventos`
+--
+ALTER TABLE `eventos`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Índices para tabela `grupos`
@@ -494,13 +557,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `caes`
 --
 ALTER TABLE `caes`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de tabela `contatos`
 --
 ALTER TABLE `contatos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
+
+--
+-- AUTO_INCREMENT de tabela `eventos`
+--
+ALTER TABLE `eventos`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de tabela `grupos`
@@ -512,7 +581,7 @@ ALTER TABLE `grupos`
 -- AUTO_INCREMENT de tabela `tutores`
 --
 ALTER TABLE `tutores`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
@@ -532,6 +601,10 @@ USE `phpmyadmin`;
 
 --
 -- Metadata para tabela contatos
+--
+
+--
+-- Metadata para tabela eventos
 --
 
 --
