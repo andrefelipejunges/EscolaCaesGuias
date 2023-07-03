@@ -48,7 +48,6 @@ include_once "../../../Config.php";
             </div>
           </li>
 
-          <li><a href ="<?php echo URL_BASE.'app/views/Eventos/Eventos.php';?>"> Eventos</a></li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-btn">Consulta</a>

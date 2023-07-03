@@ -15,7 +15,7 @@ if (isset($_GET['idExcluirUsuario'])) {
 }
 
 // Define a quantidade de registros por página
-$registrosPorPagina = 10;
+$registrosPorPagina = 8;
 
 $usuarios = $usuariosController->processRequest("ConsultarUsuarios");
 // Calcula o número total de páginas

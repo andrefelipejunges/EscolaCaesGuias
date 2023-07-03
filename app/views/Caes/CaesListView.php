@@ -20,7 +20,7 @@ if(isset($_GET['idExcluirCao'])) {
 // Recupera todos os cães
 $caes = $caesController->processRequest("consultarCaes");
 
-$registrosPorPagina = 10;
+$registrosPorPagina = 8;
 // Calcula o número total de páginas
 $totalRegistros = count($caes);
 $totalPaginas = ceil($totalRegistros / $registrosPorPagina);

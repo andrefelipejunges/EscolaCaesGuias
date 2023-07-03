@@ -22,7 +22,7 @@ if (isset($_GET['idExcluirTutor'])) {
 // Recupera todos os usuários
 $tutores = $tutoresController->processRequest("consultarTutores");
 
-$registrosPorPagina = 10;
+$registrosPorPagina = 8;
 // Calcula o número total de páginas
 $totalRegistros = count($tutores);
 $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
